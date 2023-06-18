@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "description": "Tools for quickly building a CLI app",
   "main": "lib/index.js",
+  "type": "module",
   "author": {
     "name": "Seth Battis",
     "url": "https://github.com/battis"
   },
   "license": "GPL-3.0",
   "scripts": {
-    "clean": "shx rm -rf dist/_bundles dist/lib dist/lib-esm",
-    "build": "npm run clean && npx tsc"
+    "clean": "./scripts/clean.js",
+    "build": "./scripts/build.js",
+    "dist": "./scripts/dist.js"
   },
   "devDependencies": {
     "@battis/eslint-config": "github:battis/eslint-config",
@@ -22,7 +24,11 @@
   },
   "prettier": "@battis/prettier-config",
   "eslintConfig": {
-    "extends": "@battis/eslint-config"
+    "extends": "@battis/eslint-config",
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2020
+    }
   },
   "dependencies": {
     "@inquirer/prompts": "^2.1.1",
