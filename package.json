@@ -9,8 +9,8 @@
   },
   "license": "GPL-3.0",
   "scripts": {
-    "clean": "shx rm -rf _bundles lib lib-esm",
-    "build": "npm run clean && npx tsc && npx tsc -m es6 --outDir lib-esm && webpack"
+    "clean": "shx rm -rf dist/_bundles dist/lib dist/lib-esm",
+    "build": "npm run clean && npx tsc && npx tsc -m es6 --outDir dist/lib-esm && webpack"
   },
   "devDependencies": {
     "@battis/eslint-config": "github:battis/eslint-config",

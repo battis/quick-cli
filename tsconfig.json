@@ -1,6 +1,6 @@
 {
   "extends": "@battis/webpack/ts/node-module/tsconfig.json",
   "compilerOptions": {
-    "outDir": "lib"
+    "outDir": "dist/lib"
   }
 }
