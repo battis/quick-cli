@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { ConfigMetaSet, jack } from 'jackspeak';
 import path from 'path';
 import winston from 'winston';
-export * as io from './io';
+import * as io from './io';
 
 type InitOptions = {
   root: string;
@@ -12,11 +12,11 @@ type InitOptions = {
   flags: ConfigMetaSet<'boolean', false>;
 };
 
-export const logger = winston.createLogger({
+const logger = winston.createLogger({
   transports: [new winston.transports.Console()]
 });
 
-export const appRoot = () =>
+const appRoot = () =>
   path.parse(
     require.main?.filename ||
     __dirname
@@ -64,3 +64,5 @@ export function init(options?: Partial<InitOptions>) {
   }
   return values;
 }
+
+export default { appRoot, init, logger, io };
