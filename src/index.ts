@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { ConfigMetaSet, jack } from 'jackspeak';
 import path from 'node:path';
+import process from 'node:process';
 import winston from 'winston';
 import * as io from './io';
 

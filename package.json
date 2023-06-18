@@ -7,15 +7,22 @@
     "url": "https://github.com/battis"
   },
   "license": "GPL-3.0",
-  "type": "module",
   "main": "lib/index.js",
   "engines": {
     "node": "*"
   },
   "scripts": {
     "clean": "shx rm -rf lib",
-    "build": "npm run clean && tsc",
-    "deploy": "npm run build && npx np --no-tests"
+    "build": "npm run clean && npx tsc",
+    "deploy": "npm run build && npx np --no-tests --omitDev"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^2.1.1",
+    "chalk": "^4.1.2",
+    "dotenv": "^16.3.1",
+    "email-validator": "^2.0.4",
+    "jackspeak": "^2.2.1",
+    "winston": "^3.9.0"
   },
   "devDependencies": {
     "@battis/eslint-config": "github:battis/eslint-config",
@@ -28,18 +35,10 @@
   },
   "prettier": "@battis/prettier-config",
   "eslintConfig": {
-    "extends": "@battis/eslint-config",
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaVersion": 2020
-    }
+    "extends": "@battis/eslint-config"
   },
-  "dependencies": {
-    "@inquirer/prompts": "^2.1.1",
-    "chalk": "^5.2.0",
-    "dotenv": "^16.3.1",
-    "email-validator": "^2.0.4",
-    "jackspeak": "^2.2.1",
-    "winston": "^3.9.0"
+  "np": {
+    "cleanup": false,
+    "tests": false
   }
 }
