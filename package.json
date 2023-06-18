@@ -12,9 +12,9 @@
     "node": "*"
   },
   "scripts": {
-    "clean": "shx rm -rf lib",
+    "clean": "npx shx rm -rf lib",
     "build": "npm run clean && npx tsc",
-    "deploy": "npm run build && npx np --no-tests --omitDev"
+    "deploy": "npm run build && npx np --omitDev"
   },
   "dependencies": {
     "@inquirer/prompts": "^2.1.1",
