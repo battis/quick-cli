@@ -1,3 +1,3 @@
 # @battis/cli
 
-Tools for quickly building a CLI app
+Quickly build a CLI app

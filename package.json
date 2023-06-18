@@ -1,24 +1,28 @@
 {
   "name": "@battis/cli",
-  "version": "0.1.0",
-  "description": "Tools for quickly building a CLI app",
-  "main": "lib/index.js",
-  "type": "module",
+  "version": "0.1.1",
+  "description": "Quickly build a CLI app",
   "author": {
     "name": "Seth Battis",
     "url": "https://github.com/battis"
   },
   "license": "GPL-3.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "engines": {
+    "node": "*"
+  },
   "scripts": {
-    "clean": "./scripts/clean.js",
-    "build": "./scripts/build.js",
-    "dist": "./scripts/dist.js"
+    "clean": "shx rm -rf lib",
+    "build": "npm run clean && tsc",
+    "deploy": "npm run build && npx np --no-tests"
   },
   "devDependencies": {
     "@battis/eslint-config": "github:battis/eslint-config",
     "@battis/prettier-config": "github:battis/prettier-config",
     "@tsconfig/recommended": "^1.0.2",
     "@types/node": "^20.3.1",
+    "np": "^8.0.4",
     "shx": "^0.3.4",
     "typescript": "^5.1.3"
   },

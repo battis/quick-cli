@@ -1,14 +1,16 @@
 {
   "extends": "@tsconfig/recommended",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "outDir": "dist/lib",
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2020",
+    "outDir": "lib",
+    "moduleResolution": "node",
+    "lib": ["es2020"],
+    "sourceMap": true,
+    "declaration": true,
     "strict": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
-    "declaration": true
-  }
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules", "lib"]
 }

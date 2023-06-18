@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { ConfigMetaSet, jack } from 'jackspeak';
-import path from 'path';
+import path from 'node:path';
 import winston from 'winston';
 import * as io from './io';
 
@@ -12,11 +12,11 @@ type InitOptions = {
   flags: ConfigMetaSet<'boolean', false>;
 };
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
   transports: [new winston.transports.Console()]
 });
 
-const appRoot = () =>
+export const appRoot = () =>
   path.parse(
     require.main?.filename ||
     __dirname
