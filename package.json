@@ -1,6 +1,6 @@
 {
   "name": "@battis/cli",
-  "version": "0.1.5-2",
+  "version": "0.1.5",
   "description": "Quickly build a CLI app",
   "author": {
     "name": "Seth Battis",
