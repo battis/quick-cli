@@ -1,9 +1,9 @@
 import cronValidator from 'cron-validate';
 import emailValidator from 'email-validator';
-import pathValidator from 'is-valid-path';
 import fs from 'node:fs';
 import path from 'node:path';
 import * as core from '../core';
+const pathValidator = require('is-valid-path');
 
 export const notEmpty = (value?: string) =>
   (!!value && value.length > 0) || 'May not be empty';
