@@ -7,6 +7,9 @@ dependencies:
   chalk:
     specifier: ^4.1.2
     version: 4.1.2
+  cron-validate:
+    specifier: ^1.4.5
+    version: 1.4.5
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -23,10 +26,10 @@ dependencies:
 devDependencies:
   '@battis/eslint-config':
     specifier: github:battis/eslint-config
-    version: github.com/battis/eslint-config/2b7b90a746a58bdccbf5094e52815e683aeb6acd(@tsconfig/recommended@1.0.2)(@typescript-eslint/eslint-plugin@5.59.11)(@typescript-eslint/parser@5.59.11)(eslint-config-prettier@8.8.0)(eslint-plugin-html@7.1.0)(eslint-plugin-markdown@3.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.43.0)(prettier@2.8.8)
+    version: github.com/battis/eslint-config/1cc159909d4fcb74e831d5f01c029772677562a7(@tsconfig/recommended@1.0.2)(@typescript-eslint/eslint-plugin@5.59.11)(@typescript-eslint/parser@5.59.11)(eslint-config-prettier@8.8.0)(eslint-plugin-html@7.1.0)(eslint-plugin-markdown@3.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.43.0)(prettier@2.8.8)
   '@battis/prettier-config':
     specifier: github:battis/prettier-config
-    version: github.com/battis/prettier-config/a475934b67f82eac8e5e0b7c53fc1ab58c33e946(@prettier/plugin-xml@2.2.0)(prettier-plugin-sql@0.13.0)(prettier@2.8.8)
+    version: github.com/battis/prettier-config/5f6dda5c1c79771c2d71f6c1e923d04f61756f6a(@prettier/plugin-xml@2.2.0)(prettier-plugin-sql@0.13.0)(prettier@2.8.8)
   '@tsconfig/recommended':
     specifier: ^1.0.2
     version: 1.0.2
@@ -65,6 +68,13 @@ packages:
       chalk: 2.4.2
       js-tokens: 4.0.0
     dev: true
+
+  /@babel/runtime@7.22.5:
+    resolution: {integrity: sha512-ecjvYlnAaZ/KVneE/OdKYBYfgXV3Ptu6zQWmgEF7vwKhQnvVS6bjMD2XYgj+SNvQ1GfK/pjgokfPkC/2CO8CuA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.11
+    dev: false
 
   /@bconnorwhite/module@2.0.2:
     resolution: {integrity: sha512-ck1me5WMgZKp06gnJrVKEkytpehTTQbvsAMbF1nGPeHri/AZNhj87++PSE2LOxmZqM0EtGMaqeLdx7Lw7SUnTA==}
@@ -408,6 +418,10 @@ packages:
     dependencies:
       '@types/node': 20.3.1
     dev: true
+
+  /@types/lodash@4.14.195:
+    resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
+    dev: false
 
   /@types/mdast@3.0.11:
     resolution: {integrity: sha512-Y/uImid8aAwrEA24/1tcRZwpxX3pIFTSilcNDKSPn+Y2iDywSEachzRuvgAYYLR3wpGXAsMbv5lvKLDZLeYPAw==}
@@ -1076,6 +1090,12 @@ packages:
       parse-json: 5.2.0
       path-type: 4.0.0
     dev: true
+
+  /cron-validate@1.4.5:
+    resolution: {integrity: sha512-nKlOJEnYKudMn/aNyNH8xxWczlfpaazfWV32Pcx/2St51r2bxWbGhZD7uwzMcRhunA/ZNL+Htm/i0792Z59UMQ==}
+    dependencies:
+      yup: 0.32.9
+    dev: false
 
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -2364,6 +2384,10 @@ packages:
       p-locate: 6.0.0
     dev: true
 
+  /lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
   /lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
     dev: true
@@ -2378,7 +2402,6 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-symbols@1.0.2:
     resolution: {integrity: sha512-mmPrW0Fh2fxOzdBbFv4g1m6pR72haFLPJ2G5SJEELf1y+iaQrDG6cWCPjy54RHYbZAt7X+ls690Kw62AdWXBzQ==}
@@ -2594,6 +2617,10 @@ packages:
   /mute-stream@1.0.0:
     resolution: {integrity: sha512-avsJQhyd+680gKXyG/sQc0nXaC6rBkPOfyHYcFb9+hdkqQkR9bdnkJ0AMZhke0oesPqIO+mFFJ+IdBc7mst4IA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  /nanoclone@0.2.1:
+    resolution: {integrity: sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==}
+    dev: false
 
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
@@ -3054,6 +3081,10 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
+  /property-expr@2.0.5:
+    resolution: {integrity: sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==}
+    dev: false
+
   /proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
     dev: true
@@ -3165,6 +3196,10 @@ packages:
       indent-string: 5.0.0
       strip-indent: 4.0.0
     dev: true
+
+  /regenerator-runtime@0.13.11:
+    resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
+    dev: false
 
   /regexp-to-ast@0.5.0:
     resolution: {integrity: sha512-tlbJqcMHnPKI9zSrystikWKwHkBqu2a/Sgw01h3zFjvYrMxEDYHzzoMZnUrbIfpTFEsoRnnviOXNCzFiSc54Qw==}
@@ -3607,6 +3642,10 @@ packages:
       is-number: 7.0.0
     dev: true
 
+  /toposort@2.0.2:
+    resolution: {integrity: sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==}
+    dev: false
+
   /trim-newlines@5.0.0:
     resolution: {integrity: sha512-kstfs+hgwmdsOadN3KgA+C68wPJwnZq4DN6WMDCvZapDWEF34W2TyPKN2v2+BJnZgIz5QOfxFeldLyYvdgRAwg==}
     engines: {node: '>=14.16'}
@@ -3881,11 +3920,24 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  github.com/battis/eslint-config/2b7b90a746a58bdccbf5094e52815e683aeb6acd(@tsconfig/recommended@1.0.2)(@typescript-eslint/eslint-plugin@5.59.11)(@typescript-eslint/parser@5.59.11)(eslint-config-prettier@8.8.0)(eslint-plugin-html@7.1.0)(eslint-plugin-markdown@3.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.43.0)(prettier@2.8.8):
-    resolution: {tarball: https://codeload.github.com/battis/eslint-config/tar.gz/2b7b90a746a58bdccbf5094e52815e683aeb6acd}
-    id: github.com/battis/eslint-config/2b7b90a746a58bdccbf5094e52815e683aeb6acd
+  /yup@0.32.9:
+    resolution: {integrity: sha512-Ci1qN+i2H0XpY7syDQ0k5zKQ/DoxO0LzPg8PAR/X4Mpj6DqaeCoIYEEjDJwhArh3Fa7GWbQQVDZKeXYlSH4JMg==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@babel/runtime': 7.22.5
+      '@types/lodash': 4.14.195
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      nanoclone: 0.2.1
+      property-expr: 2.0.5
+      toposort: 2.0.2
+    dev: false
+
+  github.com/battis/eslint-config/1cc159909d4fcb74e831d5f01c029772677562a7(@tsconfig/recommended@1.0.2)(@typescript-eslint/eslint-plugin@5.59.11)(@typescript-eslint/parser@5.59.11)(eslint-config-prettier@8.8.0)(eslint-plugin-html@7.1.0)(eslint-plugin-markdown@3.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.43.0)(prettier@2.8.8):
+    resolution: {tarball: https://codeload.github.com/battis/eslint-config/tar.gz/1cc159909d4fcb74e831d5f01c029772677562a7}
+    id: github.com/battis/eslint-config/1cc159909d4fcb74e831d5f01c029772677562a7
     name: '@battis/eslint-config'
-    version: 1.0.0
+    version: 1.0.1
     peerDependencies:
       '@tsconfig/recommended': ^1.0.2
       '@typescript-eslint/eslint-plugin': ^5.51.0
@@ -3908,11 +3960,11 @@ packages:
       prettier: 2.8.8
     dev: true
 
-  github.com/battis/prettier-config/a475934b67f82eac8e5e0b7c53fc1ab58c33e946(@prettier/plugin-xml@2.2.0)(prettier-plugin-sql@0.13.0)(prettier@2.8.8):
-    resolution: {tarball: https://codeload.github.com/battis/prettier-config/tar.gz/a475934b67f82eac8e5e0b7c53fc1ab58c33e946}
-    id: github.com/battis/prettier-config/a475934b67f82eac8e5e0b7c53fc1ab58c33e946
+  github.com/battis/prettier-config/5f6dda5c1c79771c2d71f6c1e923d04f61756f6a(@prettier/plugin-xml@2.2.0)(prettier-plugin-sql@0.13.0)(prettier@2.8.8):
+    resolution: {tarball: https://codeload.github.com/battis/prettier-config/tar.gz/5f6dda5c1c79771c2d71f6c1e923d04f61756f6a}
+    id: github.com/battis/prettier-config/5f6dda5c1c79771c2d71f6c1e923d04f61756f6a
     name: '@battis/prettier-config'
-    version: 1.1.0
+    version: 1.1.1
     peerDependencies:
       '@prettier/plugin-xml': ^2.2.0
       prettier: ^2.8.4

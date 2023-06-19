@@ -14,11 +14,12 @@
   "scripts": {
     "clean": "npx shx rm -rf lib",
     "build": "npm run clean && npx tsc",
-    "deploy": "npm run build && npx np --omitDev"
+    "deploy": "npm run build && npx np --omit=dev"
   },
   "dependencies": {
     "@inquirer/prompts": "^2.1.1",
     "chalk": "^4.1.2",
+    "cron-validate": "^1.4.5",
     "dotenv": "^16.3.1",
     "email-validator": "^2.0.4",
     "jackspeak": "^2.2.1",
