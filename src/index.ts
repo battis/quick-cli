@@ -6,7 +6,6 @@ export default {
   appRoot: core.appRoot,
   init: core.init,
   log: logger.log,
-  prompts: io.prompts,
   logger,
   io
 };

@@ -1,5 +1,9 @@
 import cronValidator from 'cron-validate';
 import emailValidator from 'email-validator';
+import pathValidator from 'is-valid-path';
+import fs from 'node:fs';
+import path from 'node:path';
+import * as core from '../core';
 
 export const notEmpty = (value?: string) =>
   (!!value && value.length > 0) || 'May not be empty';
@@ -23,3 +27,11 @@ export const email = (value?: string) =>
 export const cron = (value?: string) =>
   (notEmpty(value) && cronValidator(value || '').isValid()) ||
   'Must be valid cron schedule';
+
+export const isPath = (value?: string) =>
+  (notEmpty(value) && pathValidator(value)) || 'Must be a valid path';
+
+export const pathExists = (value?: string) =>
+  (notEmpty(value) &&
+    fs.existsSync(path.resolve(core.appRoot(), value || ''))) ||
+  `${path.resolve(core.appRoot(), value || '')} does not exist`;
