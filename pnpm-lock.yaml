@@ -47,11 +47,11 @@ devDependencies:
     specifier: ^7.22.5
     version: 7.22.5(@babel/core@7.22.5)
   '@battis/eslint-config':
-    specifier: github:battis/eslint-config
-    version: github.com/battis/eslint-config/1cc159909d4fcb74e831d5f01c029772677562a7(@tsconfig/recommended@1.0.2)(@typescript-eslint/eslint-plugin@5.60.1)(@typescript-eslint/parser@5.60.1)(eslint-config-prettier@8.8.0)(eslint-plugin-html@7.1.0)(eslint-plugin-markdown@3.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.44.0)(prettier@2.8.8)
+    specifier: latest
+    version: 1.0.1(@tsconfig/recommended@1.0.2)(@typescript-eslint/eslint-plugin@5.60.1)(@typescript-eslint/parser@5.60.1)(eslint-config-prettier@8.8.0)(eslint-plugin-html@7.1.0)(eslint-plugin-markdown@3.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.44.0)(prettier@2.8.8)
   '@battis/prettier-config':
-    specifier: github:battis/prettier-config
-    version: github.com/battis/prettier-config/5f6dda5c1c79771c2d71f6c1e923d04f61756f6a(@prettier/plugin-xml@2.2.0)(prettier-plugin-sql@0.13.0)(prettier@2.8.8)
+    specifier: latest
+    version: 1.1.1(@prettier/plugin-xml@2.2.0)(prettier-plugin-sql@0.13.0)(prettier@2.8.8)
   '@tsconfig/recommended':
     specifier: ^1.0.2
     version: 1.0.2
@@ -1318,6 +1318,42 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
+    dev: true
+
+  /@battis/eslint-config@1.0.1(@tsconfig/recommended@1.0.2)(@typescript-eslint/eslint-plugin@5.60.1)(@typescript-eslint/parser@5.60.1)(eslint-config-prettier@8.8.0)(eslint-plugin-html@7.1.0)(eslint-plugin-markdown@3.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.44.0)(prettier@2.8.8):
+    resolution: {integrity: sha512-kA8ZKwuOrMgjpG1gTXWA89Fs2KB5PMJ6tnX+BqHQ38J6Nxl2xcoCvY8VxFQJUjy9xdjNt1gQ9umt2g2A9gRJxg==}
+    peerDependencies:
+      '@tsconfig/recommended': ^1.0.2
+      '@typescript-eslint/eslint-plugin': ^5.51.0
+      '@typescript-eslint/parser': ^5.51.0
+      eslint: ^8.33.0
+      eslint-config-prettier: ^8.6.0
+      eslint-plugin-html: ^7.1.0
+      eslint-plugin-markdown: ^3.0.0
+      eslint-plugin-tsdoc: ^0.2.17
+      prettier: ^2.8.4
+    dependencies:
+      '@tsconfig/recommended': 1.0.2
+      '@typescript-eslint/eslint-plugin': 5.60.1(@typescript-eslint/parser@5.60.1)(eslint@8.44.0)(typescript@5.1.6)
+      '@typescript-eslint/parser': 5.60.1(eslint@8.44.0)(typescript@5.1.6)
+      eslint: 8.44.0
+      eslint-config-prettier: 8.8.0(eslint@8.44.0)
+      eslint-plugin-html: 7.1.0
+      eslint-plugin-markdown: 3.0.0(eslint@8.44.0)
+      eslint-plugin-tsdoc: 0.2.17
+      prettier: 2.8.8
+    dev: true
+
+  /@battis/prettier-config@1.1.1(@prettier/plugin-xml@2.2.0)(prettier-plugin-sql@0.13.0)(prettier@2.8.8):
+    resolution: {integrity: sha512-teH665aIOK+YUor2R9fgXCOIHLYHuaZhSpjdOzTA/QJoUi/VPsRVuT0PrWsU4pfrHA7K6kONszu+zftgzeUJsg==}
+    peerDependencies:
+      '@prettier/plugin-xml': ^2.2.0
+      prettier: ^2.8.4
+      prettier-plugin-sql: ^0.13.0
+    dependencies:
+      '@prettier/plugin-xml': 2.2.0
+      prettier: 2.8.8
+      prettier-plugin-sql: 0.13.0(prettier@2.8.8)
     dev: true
 
   /@bconnorwhite/module@2.0.2:
@@ -6051,45 +6087,3 @@ packages:
       property-expr: 2.0.5
       toposort: 2.0.2
     dev: false
-
-  github.com/battis/eslint-config/1cc159909d4fcb74e831d5f01c029772677562a7(@tsconfig/recommended@1.0.2)(@typescript-eslint/eslint-plugin@5.60.1)(@typescript-eslint/parser@5.60.1)(eslint-config-prettier@8.8.0)(eslint-plugin-html@7.1.0)(eslint-plugin-markdown@3.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.44.0)(prettier@2.8.8):
-    resolution: {tarball: https://codeload.github.com/battis/eslint-config/tar.gz/1cc159909d4fcb74e831d5f01c029772677562a7}
-    id: github.com/battis/eslint-config/1cc159909d4fcb74e831d5f01c029772677562a7
-    name: '@battis/eslint-config'
-    version: 1.0.1
-    peerDependencies:
-      '@tsconfig/recommended': ^1.0.2
-      '@typescript-eslint/eslint-plugin': ^5.51.0
-      '@typescript-eslint/parser': ^5.51.0
-      eslint: ^8.33.0
-      eslint-config-prettier: ^8.6.0
-      eslint-plugin-html: ^7.1.0
-      eslint-plugin-markdown: ^3.0.0
-      eslint-plugin-tsdoc: ^0.2.17
-      prettier: ^2.8.4
-    dependencies:
-      '@tsconfig/recommended': 1.0.2
-      '@typescript-eslint/eslint-plugin': 5.60.1(@typescript-eslint/parser@5.60.1)(eslint@8.44.0)(typescript@5.1.6)
-      '@typescript-eslint/parser': 5.60.1(eslint@8.44.0)(typescript@5.1.6)
-      eslint: 8.44.0
-      eslint-config-prettier: 8.8.0(eslint@8.44.0)
-      eslint-plugin-html: 7.1.0
-      eslint-plugin-markdown: 3.0.0(eslint@8.44.0)
-      eslint-plugin-tsdoc: 0.2.17
-      prettier: 2.8.8
-    dev: true
-
-  github.com/battis/prettier-config/5f6dda5c1c79771c2d71f6c1e923d04f61756f6a(@prettier/plugin-xml@2.2.0)(prettier-plugin-sql@0.13.0)(prettier@2.8.8):
-    resolution: {tarball: https://codeload.github.com/battis/prettier-config/tar.gz/5f6dda5c1c79771c2d71f6c1e923d04f61756f6a}
-    id: github.com/battis/prettier-config/5f6dda5c1c79771c2d71f6c1e923d04f61756f6a
-    name: '@battis/prettier-config'
-    version: 1.1.1
-    peerDependencies:
-      '@prettier/plugin-xml': ^2.2.0
-      prettier: ^2.8.4
-      prettier-plugin-sql: ^0.13.0
-    dependencies:
-      '@prettier/plugin-xml': 2.2.0
-      prettier: 2.8.8
-      prettier-plugin-sql: 0.13.0(prettier@2.8.8)
-    dev: true
