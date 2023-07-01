@@ -1,3 +1,3 @@
-# @battis/quick-cli
+# @battis/qui-cli
 
-Quickly build a CLI app
+**Quickly** build a CLI app
