@@ -1,5 +1,5 @@
 {
-  "name": "@battis/cli",
+  "name": "@battis/quick-cli",
   "version": "0.0.0",
   "description": "Quickly build a CLI app",
   "author": {
