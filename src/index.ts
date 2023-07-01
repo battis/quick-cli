@@ -1,11 +1,15 @@
-import * as core from './core';
-import * as io from './io/';
-import * as logger from './logger';
+import * as prompts from '@inquirer/prompts';
+import colors from './colors';
+import core from './core';
+import log from './log';
+import shell from './shell';
+import validators from './validators';
 
 export default {
-  appRoot: core.appRoot,
-  init: core.init,
-  log: logger.log,
-  logger,
-  io
+  ...core,
+  log,
+  prompts,
+  colors,
+  shell,
+  validators
 };

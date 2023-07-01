@@ -1,61 +1,42 @@
+import appRootPath from 'app-root-path';
 import dotenv from 'dotenv';
-import { ConfigMetaSet, jack } from 'jackspeak';
-import path from 'node:path';
-import process from 'node:process';
+import { jack } from 'jackspeak';
+import path from 'path';
+import process from 'process';
+import log from './log';
+import options from './options';
+import { Options } from './options/types';
+import shell from './shell';
 
-type InitOptions = {
-  root: string;
-  loadDotEnv: boolean | string;
-  setRootAsCurrentWorkingDirectory: boolean;
-  options: ConfigMetaSet<'string', false>;
-  flags: ConfigMetaSet<'boolean', false>;
+type Arguments = { values: { [name: string]: string }; positionals: string[] };
+
+export default {
+  appRoot: () => appRootPath.toString(),
+
+  init: function <C>(config?: Partial<Options>): Arguments {
+    const opt = options.hydrate(config || {});
+    if (opt.env.setRootAsCurrentWorkingDirectory) {
+      process.chdir(opt.env.root);
+    }
+    if (opt.env.loadDotEnv === true) {
+      dotenv.config();
+    } else if (typeof opt.env.loadDotEnv === 'string') {
+      dotenv.config({ path: path.resolve(process.cwd(), opt.env.loadDotEnv) });
+    }
+    const j = jack({ envPrefix: opt.args.envPrefix })
+      .opt(opt.args.options)
+      .optList(opt.args.optionLists)
+      .flag(opt.args.flags);
+    const args = j.parse();
+    if (args.values['help']) {
+      console.log(j.usage());
+      process.exit(0);
+    }
+    opt.shell.logCommands = !!args.values['commands'];
+
+    shell.init(opt.shell);
+    log.init(opt.log);
+
+    return args;
+  }
 };
-
-export const appRoot = () =>
-  path.parse(
-    require.main?.filename ||
-    __dirname
-      .match(/^(.*\/node_modyles)\//)
-      ?.splice(1)
-      .shift() ||
-    path.resolve(__dirname, '..')
-  ).dir;
-
-export function init(options?: Partial<InitOptions>) {
-  const opt: InitOptions = {
-    root: options?.root || appRoot(),
-    loadDotEnv:
-      options?.loadDotEnv === false
-        ? false
-        : typeof options?.loadDotEnv === 'string'
-          ? options.loadDotEnv
-          : true,
-    setRootAsCurrentWorkingDirectory:
-      options?.setRootAsCurrentWorkingDirectory === false ? false : true,
-    options: {
-      ...{
-        help: {
-          short: 'h',
-          description: 'Usage'
-        },
-        ...(options?.options || {})
-      }
-    },
-    flags: { ...(options?.flags || {}) }
-  };
-  if (opt.setRootAsCurrentWorkingDirectory) {
-    process.chdir(opt.root);
-  }
-  if (opt.loadDotEnv === true) {
-    dotenv.config();
-  } else if (typeof opt.loadDotEnv === 'string') {
-    dotenv.config({ path: path.resolve(process.cwd(), opt.loadDotEnv) });
-  }
-  const j = jack({ envPrefix: 'ARG' }).opt(opt.options).flag(opt.flags);
-  const { values } = j.parse();
-  if (values.help) {
-    console.log(j.usage());
-    process.exit(0);
-  }
-  return values;
-}

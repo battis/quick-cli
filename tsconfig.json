@@ -1,11 +1,13 @@
 {
-  "extends": "@tsconfig/recommended",
   "compilerOptions": {
-    "outDir": "lib",
+    "outDir": "./lib/esm",
+    "target": "es6",
     "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
-    "allowSyntheticDefaultImports": true
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["./src"]
 }
