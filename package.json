@@ -52,14 +52,6 @@
   "eslintConfig": {
     "extends": "@battis/eslint-config"
   },
-  "babel": {
-    "presets": [
-      "@babel/env"
-    ],
-    "plugins": [
-      "add-module-exports"
-    ]
-  },
   "np": {
     "cleanup": false,
     "tests": false
