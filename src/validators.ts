@@ -1,4 +1,4 @@
-const cronValidator = require('cron-validate');
+import cronValidator from 'cron-validate';
 import emailValidator from 'email-validator';
 import fs from 'fs';
 import pathValidator from 'is-valid-path';
