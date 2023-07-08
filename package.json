@@ -19,9 +19,9 @@
     "build:clean": "shx rm -rf lib",
     "build:transpile": "tsc",
     "build:transform": "./scripts/transform-node-to-esm-imports.cjs src lib/esm",
-    "deploy": "run-s deploy:*",
-    "deploy:build": "npm run build",
-    "deploy:publish": "npx np --omit=dev"
+    "release": "run-s release:*",
+    "release:build": "npm run build",
+    "release:publish": "npx np --omit=dev"
   },
   "dependencies": {
     "@inquirer/prompts": "^2.2.0",
