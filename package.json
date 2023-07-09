@@ -8,17 +8,23 @@
   },
   "license": "GPL-3.0",
   "target": "node",
-  "main": "./lib/esm/index.mjs",
-  "types": "./lib/esm/index.d.ts",
-  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "require": "./lib/cjs/index.js",
+      "import": "./lib/esm/index.mjs",
+      "default": "./lib/esm/index.mjs"
+    }
+  },
   "engines": {
     "node": "*"
   },
   "scripts": {
     "build": "run-s build:*",
     "build:clean": "shx rm -rf lib",
-    "build:transpile": "tsc",
-    "build:transform": "./scripts/transform-node-to-esm-imports.cjs src lib/esm",
+    "build:commonjs": "babel src --extensions .ts --out-dir lib/cjs --source-maps --config-file ./babel/cjs.json",
+    "build:esm": "babel src --extensions .ts --out-dir lib/esm --out-file-extension .mjs --source-maps --config-file ./babel/esm.json",
+    "build:types": "tsc",
     "release": "run-s release:*",
     "release:build": "npm run build",
     "release:publish": "npx np --omit=dev"
@@ -37,12 +43,18 @@
     "winston": "^3.9.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.22.6",
+    "@babel/core": "^7.22.8",
+    "@babel/preset-env": "^7.22.7",
+    "@babel/preset-typescript": "^7.22.5",
     "@battis/eslint-config": "latest",
     "@battis/prettier-config": "latest",
     "@tsconfig/recommended": "^1.0.2",
     "@types/is-valid-path": "^0.1.0",
     "@types/node": "^20.3.3",
     "@types/shelljs": "^0.8.12",
+    "babel-plugin-add-import-extension": "^1.6.0",
+    "babel-plugin-add-module-exports": "^1.0.4",
     "np": "^8.0.4",
     "npm-run-all": "^4.1.5",
     "shx": "^0.3.4",
