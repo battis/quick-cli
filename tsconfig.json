@@ -1,14 +1,1 @@
-{
-  "compilerOptions": {
-    "outDir": "lib/types",
-    "target": "es6",
-    "moduleResolution": "node",
-    "module": "es2020",
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
-  },
-  "include": ["src"]
-}
+{"extends":"@battis/babel-config/tsconfig.json","compilerOptions":{"outDir":"dist/types"},"include":["src"]}
