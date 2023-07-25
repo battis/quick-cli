@@ -21,6 +21,8 @@ export default {
   minLength,
   maxLength,
 
+  match: (pattern: RegExp) => (value?: string) => (!!value && pattern.test(value)) || `Must match pattern /${pattern.toString()}/`,
+
   lengthBetween: (min: number, max: number) => (value?: string) =>
     (minLength(min)(value) && maxLength(max)(value)) ||
     `Must be between ${minLength} && ${maxLength} characters`,
