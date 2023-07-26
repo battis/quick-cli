@@ -4,5 +4,5 @@ export default {
   value: chalk.cyan,
   url: chalk.yellow,
   error: chalk.bold.red,
-  command: chalk.white
+  command: chalk.blueBright
 };
