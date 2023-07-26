@@ -10,13 +10,6 @@
   "target": "node",
   "main": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types",
-      "import": "./dist/esm",
-      "default": "./dist/esm"
-    }
-  },
   "engines": {
     "node": ">=12.17"
   },
