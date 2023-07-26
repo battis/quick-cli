@@ -14,7 +14,7 @@ function init({
     levels: levels.levels,
     transports: [
       new winston.transports.Console({
-        format: winston.format.simple(),
+        format: winston.format.printf(({ message }) => message),
         level: stdoutLevel
       })
     ]
