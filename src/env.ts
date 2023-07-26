@@ -43,6 +43,8 @@ function writeFile(file: string, contents: string) {
 export default {
   parse,
 
+  exists: ({ key, file = '.env' }: GetOptions) => !!parse(file)[key],
+
   get: ({ key, file = '.env' }: GetOptions) => parse(file)[key],
 
   set: function({ key, value, file = '.env', comment }: SetOptions) {
