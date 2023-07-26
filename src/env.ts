@@ -2,6 +2,7 @@ import AppRootPath from 'app-root-path';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
+import shell from './shell';
 
 function parse(name = '.env') {
   const env = dotenv.config({
@@ -33,7 +34,9 @@ type DeleteOptions = {
 };
 
 function readFile(file: string) {
-  return fs.readFileSync(path.join(AppRootPath.toString(), file), 'utf8');
+  const filePath = path.join(AppRootPath.toString(), file);
+  shell.touch(filePath);
+  return fs.readFileSync(filePath, 'utf8');
 }
 
 function writeFile(file: string, contents: string) {
