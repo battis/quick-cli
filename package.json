@@ -8,7 +8,7 @@
   },
   "license": "GPL-3.0",
   "target": "node",
-  "main": "./dist/esm/index.js",
+  "main": "./dist/esm/index.mjs",
   "types": "./dist/types/index.d.ts",
   "engines": {
     "node": ">=12.17"
