@@ -6,7 +6,7 @@ import shell from './shell';
 
 function parse(name = '.env') {
   const env = dotenv.config({
-    path: path.join(AppRootPath.toString(), name)
+    path: path.resolve(AppRootPath.toString(), name)
   });
   if (!env.error) {
     return env.parsed;
@@ -34,13 +34,13 @@ type DeleteOptions = {
 };
 
 function readFile(file: string) {
-  const filePath = path.join(AppRootPath.toString(), file);
+  const filePath = path.resolve(AppRootPath.toString(), file);
   shell.touch(filePath);
   return fs.readFileSync(filePath, 'utf8');
 }
 
 function writeFile(file: string, contents: string) {
-  fs.writeFileSync(path.join(AppRootPath.toString(), file), contents);
+  fs.writeFileSync(path.resolve(AppRootPath.toString(), file), contents);
 }
 
 export default {
