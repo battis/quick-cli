@@ -1,6 +1,6 @@
 {
   "name": "@battis/qui-cli",
-  "version": "0.2.4-0",
+  "version": "0.2.4-1",
   "description": "Quickly build a CLI app",
   "author": {
     "name": "Seth Battis",
