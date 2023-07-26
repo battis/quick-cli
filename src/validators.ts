@@ -1,6 +1,7 @@
 import cronValidator from 'cron-validate';
 import emailValidator from 'email-validator';
 import fs from 'fs';
+import domainValidator from 'is-valid-domain';
 import pathValidator from 'is-valid-path';
 import path from 'path';
 import core from './core';
@@ -21,7 +22,9 @@ export default {
   minLength,
   maxLength,
 
-  match: (pattern: RegExp) => (value?: string) => (!!value && pattern.test(value)) || `Must match pattern /${pattern.toString()}/`,
+  match: (pattern: RegExp) => (value?: string) =>
+    (!!value && pattern.test(value)) ||
+    `Must match pattern /${pattern.toString()}/`,
 
   lengthBetween: (min: number, max: number) => (value?: string) =>
     (minLength(min)(value) && maxLength(max)(value)) ||
@@ -37,6 +40,29 @@ export default {
 
   isPath: (value?: string) =>
     (notEmpty(value) && pathValidator(value)) || 'Must be a valid path',
+
+  isHostname:
+    ({
+      subdomain = false,
+      wildcard = false,
+      allowUnicode = false,
+      topLevel = false,
+      localhost = true,
+      ipAddress = true,
+      allowed = []
+    }) =>
+      (value?: string) =>
+        (!!value &&
+          (domainValidator(value, {
+            subdomain,
+            wildcard,
+            allowUnicode,
+            topLevel
+          }) ||
+            (localhost && value === 'localhost') ||
+            (ipAddress && /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(value)) ||
+            allowed.includes(value))) ||
+        'Must be a valid hostname',
 
   pathExists: function(value?: string) {
     const possiblePath = path.resolve(core.appRoot(), value || '');
