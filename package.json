@@ -8,8 +8,17 @@
   },
   "license": "GPL-3.0",
   "target": "node",
+  "main": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types",
+      "import": "./dist/esm",
+      "default": "./dist/esm"
+    }
+  },
   "engines": {
-    "node": "*"
+    "node": ">=12.17"
   },
   "scripts": {
     "release": "run-s release:*",
@@ -53,12 +62,5 @@
   "prettier": "@battis/prettier-config",
   "eslintConfig": {
     "extends": "@battis/eslint-config"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/types",
-      "import": "./dist/esm",
-      "default": "./dist/esm"
-    }
   }
 }

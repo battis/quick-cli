@@ -6,6 +6,9 @@ import log from './log';
 import shell from './shell';
 import validators from './validators';
 
+export type { Arguments } from './core';
+export type { Options } from './options/types';
+
 export default {
   ...core,
   colors,

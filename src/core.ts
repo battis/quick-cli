@@ -8,7 +8,10 @@ import options from './options';
 import { Options } from './options/types';
 import shell from './shell';
 
-type Arguments = { values: { [name: string]: string }; positionals: string[] };
+export type Arguments = {
+  values: { [name: string]: string };
+  positionals: string[];
+};
 
 export default {
   appRoot: () => appRootPath.toString(),
