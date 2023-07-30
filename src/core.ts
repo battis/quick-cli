@@ -16,7 +16,7 @@ export type Arguments = {
 export default {
   appRoot: () => appRootPath.toString(),
 
-  init: function <C>(config?: Partial<Options>): Arguments {
+  init: function(config?: Partial<Options>): Arguments {
     const opt = options.hydrate(config || {});
     if (opt.env.setRootAsCurrentWorkingDirectory) {
       process.chdir(opt.env.root);
@@ -35,6 +35,7 @@ export default {
       console.log(j.usage());
       process.exit(0);
     }
+    opt.shell.silent = !!args.values['silent'];
     opt.shell.logCommands = !!args.values['commands'];
 
     shell.init(opt.shell);

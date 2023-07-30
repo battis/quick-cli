@@ -37,6 +37,10 @@ const defaults: Options = {
       },
       commands: {
         description: 'Include shell commands in log'
+      },
+      silent: {
+        description:
+          'Hide command output (on by default, use --no-silent to disable)'
       }
     }
   },
