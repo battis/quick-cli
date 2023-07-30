@@ -57,7 +57,10 @@ const defaults: Options = {
   }
 };
 
-function hydrate(options: Partial<Options>): Options {
+function hydrate(
+  options: Partial<Options>,
+  overrides: Partial<Options> = {}
+): Options {
   const combine = <T>(fallback: T, arg?: T) =>
     (arg !== undefined ? arg : fallback) as T;
   const merge = <T>(fallback: T, arg?: T) =>
@@ -67,33 +70,54 @@ function hydrate(options: Partial<Options>): Options {
   } as T);
   return {
     env: {
-      root: combine<string>(defaults.env.root, options?.env?.root),
+      root: combine<string>(
+        defaults.env.root,
+        combine<string>(overrides?.env?.root, options?.env?.root)
+      ),
       setRootAsCurrentWorkingDirectory: combine<boolean>(
         defaults.env.setRootAsCurrentWorkingDirectory,
-        options?.env?.setRootAsCurrentWorkingDirectory
+        combine<boolean>(
+          overrides?.env?.setRootAsCurrentWorkingDirectory,
+          options?.env?.setRootAsCurrentWorkingDirectory
+        )
       ),
       loadDotEnv: combine<string | boolean>(
         defaults.env.loadDotEnv,
-        options?.env?.loadDotEnv
+        combine<string | boolean>(
+          overrides?.env?.loadDotEnv,
+          options?.env?.loadDotEnv
+        )
       )
     },
     args: {
       envPrefix: combine<string>(
         defaults.args.envPrefix,
-        options?.args?.envPrefix
+        combine<string>(overrides?.args?.envPrefix, options?.args?.envPrefix)
       ),
       options: merge<OptionsConfig>(
         defaults.args.options,
-        options?.args?.options
+        merge<OptionsConfig>(overrides?.args?.options, options?.args?.options)
       ),
       optionLists: merge<OptionListsConfig>(
         defaults.args.optionLists,
-        options?.args?.optionLists
+        merge<OptionListsConfig>(
+          overrides?.args?.optionLists,
+          options?.args?.optionLists
+        )
       ),
-      flags: merge<FlagsConfig>(defaults.args.flags, options?.args?.flags)
+      flags: merge<FlagsConfig>(
+        defaults.args.flags,
+        merge<FlagsConfig>(overrides?.args?.flags, options?.args?.flags)
+      )
     },
-    shell: merge<ShellOptions>(defaults.shell, options?.shell),
-    log: merge<LogOptions>(defaults.log, options?.log)
+    shell: merge<ShellOptions>(
+      defaults.shell,
+      merge<ShellOptions>(overrides?.shell, options?.shell)
+    ),
+    log: merge<LogOptions>(
+      defaults.log,
+      merge<LogOptions>(overrides?.log, options?.log)
+    )
   };
 }
 
