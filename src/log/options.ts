@@ -13,13 +13,13 @@ export type LogOptions = {
 
 export const DefaultLevels: CustomLevels = {
   levels: {
-    all: 0,
-    trace: 1,
-    debug: 2,
+    all: 6,
+    trace: 5,
+    debug: 4,
     info: 3,
-    warning: 4,
-    error: 5,
-    fatal: 6
+    warning: 2,
+    error: 1,
+    fatal: 0
   },
   colors: {
     trace: 'blue',
