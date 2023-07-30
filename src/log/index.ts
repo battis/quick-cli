@@ -35,7 +35,7 @@ function init({
       `Logging level ${colors.value(fileLevel)} to ${colors.url(filename)}`
     );
     logger.add(transports.file);
-    console.log({ logger, transports });
+    console.log(logger.transports);
   }
   winston.addColors(levels.colors);
   return logger;
