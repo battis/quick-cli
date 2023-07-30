@@ -18,7 +18,6 @@ export default {
 
   init: function(config?: Partial<Options>): Arguments {
     const opt = options.hydrate(config || {});
-    console.log({ options, opt });
     if (opt.env.setRootAsCurrentWorkingDirectory) {
       process.chdir(opt.env.root);
       opt.log.root = opt.env.root;
@@ -52,7 +51,6 @@ export default {
     opt.log.stdoutLevel = args.values.stdoutLevel || opt.log.stdoutLevel;
     opt.log.fileLevel = args.values.fileLevel || opt.log.fileLevel;
     log.init(opt.log);
-    console.log({ args });
     return args;
   }
 };
