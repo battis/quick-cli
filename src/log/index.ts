@@ -24,14 +24,15 @@ function init({
   });
   if (logFilePath) {
     const filename = path.resolve(root, logFilePath);
+    logger.info(
+      `Logging level ${colors.value(fileLevel)} to ${colors.url(filename)}`
+    );
     logger.add(
       new winston.transports.File({
         filename,
+        format: winston.format.json(),
         level: fileLevel
       })
-    );
-    logger.info(
-      `Logging level ${colors.value(fileLevel)} to ${colors.url(filename)}`
     );
   }
   winston.addColors(levels.colors);
