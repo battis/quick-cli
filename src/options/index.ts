@@ -45,7 +45,7 @@ const defaults: Options = {
     }
   },
   shell: {
-    logCommands: false,
+    logCommands: true,
     silent: true
   },
   log: {

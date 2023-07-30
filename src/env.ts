@@ -19,11 +19,16 @@ type GetOptions = {
   file?: string;
 };
 
+const get = ({ key, file = '.env' }: GetOptions) => parse(file)[key];
+
+const exists = ({ key, file = '.env' }: GetOptions) => !!parse(file)[key];
+
 type SetOptions = {
   key: string;
   value: string;
   file?: string;
   comment?: string;
+  ifNotExists?: boolean;
 };
 
 type DeleteOptions = {
@@ -43,24 +48,30 @@ function writeFile(file: string, contents: string) {
 
 export default {
   parse,
+  exists,
+  get,
 
-  exists: ({ key, file = '.env' }: GetOptions) => !!parse(file)[key],
-
-  get: ({ key, file = '.env' }: GetOptions) => parse(file)[key],
-
-  set: function({ key, value, file = '.env', comment }: SetOptions) {
-    let env = readFile(file);
-    const pattern = new RegExp(`${key}=.*\\n`);
-    if (/[\s=]/.test(value)) {
-      value = `"${value}"`;
+  set: function({
+    key,
+    value,
+    file = '.env',
+    comment,
+    ifNotExists = false
+  }: SetOptions) {
+    if (get({ key, file }) === undefined) {
+      let env = readFile(file);
+      const pattern = new RegExp(`${key}=.*\\n`);
+      if (/[\s=]/.test(value)) {
+        value = `"${value}"`;
+      }
+      if (pattern.test(env)) {
+        env = env.replace(pattern, `${key}=${value}\n`);
+      } else {
+        env = `${env.trim()}\n${comment ? `\n# ${comment}\n` : ''
+          }${key}=${value}\n`;
+      }
+      writeFile(file, env);
     }
-    if (pattern.test(env)) {
-      env = env.replace(pattern, `${key}=${value}\n`);
-    } else {
-      env = `${env.trim()}\n${comment ? `\n# ${comment}\n` : ''
-        }${key}=${value}\n`;
-    }
-    writeFile(file, env);
   },
 
   delete: function({ key, file = '.env', comment }: DeleteOptions) {
