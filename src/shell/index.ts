@@ -21,7 +21,7 @@ export default {
   init,
   get: () => shell,
   exec: function(command: string) {
-    if (logCommands) {
+    if (!silent && logCommands) {
       log.info(colors.command(command));
     }
     previousResult = shell.exec(command, { silent });
