@@ -1,4 +1,5 @@
 import path from 'path';
+import stripAnsi from 'strip-ansi';
 import winston from 'winston';
 import colors from '../colors';
 import options from '../options';
@@ -29,7 +30,12 @@ function init({
     const filename = path.resolve(root, logFilePath);
     transports.file = new winston.transports.File({
       filename,
-      level: fileLevel
+      level: fileLevel,
+      format: winston.format.combine(
+        winston.format.json(),
+        winston.format.timestamp(),
+        winston.format.printf(({ message }) => stripAnsi(message))
+      )
     });
     logger.info(
       `Logging level ${colors.value(fileLevel)} to ${colors.url(filename)}`
