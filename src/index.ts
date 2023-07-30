@@ -4,6 +4,7 @@ import colors from './colors';
 import core from './core';
 import env from './env';
 import log from './log';
+import options from './options';
 import shell from './shell';
 import validators from './validators';
 
@@ -15,6 +16,7 @@ export default {
   colors,
   env,
   log,
+  options,
   prompts,
   shell,
   spinner,
