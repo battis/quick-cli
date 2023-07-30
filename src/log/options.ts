@@ -8,6 +8,7 @@ export type LogOptions = {
   stdoutLevel: string;
   fileLevel: string;
   levels: CustomLevels;
+  root: string;
 };
 
 export const DefaultLevels: CustomLevels = {

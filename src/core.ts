@@ -20,6 +20,7 @@ export default {
     const opt = options.hydrate(config || {});
     if (opt.env.setRootAsCurrentWorkingDirectory) {
       process.chdir(opt.env.root);
+      opt.log.root = opt.env.root;
     }
     if (opt.env.loadDotEnv === true) {
       dotenv.config();

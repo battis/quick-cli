@@ -52,7 +52,8 @@ const defaults: Options = {
     logFilePath: undefined,
     stdoutLevel: 'info',
     fileLevel: 'all',
-    levels: DefaultLevels
+    levels: DefaultLevels,
+    root: process.cwd()
   }
 };
 

@@ -1,4 +1,6 @@
+import path from 'path';
 import winston from 'winston';
+import colors from '../colors';
 import options from '../options';
 import { DefaultLevels, LogOptions } from './options';
 
@@ -8,7 +10,8 @@ function init({
   logFilePath = options.defaults.log.logFilePath,
   stdoutLevel = options.defaults.log.stdoutLevel,
   fileLevel = options.defaults.log.fileLevel,
-  levels = options.defaults.log.levels
+  levels = options.defaults.log.levels,
+  root = options.defaults.log.root
 }: Partial<LogOptions>) {
   logger.configure({
     levels: levels.levels,
@@ -20,8 +23,15 @@ function init({
     ]
   });
   if (logFilePath) {
+    const filename = path.resolve(root, logFilePath);
     logger.transports.push(
-      new winston.transports.File({ filename: logFilePath, level: fileLevel })
+      new winston.transports.File({
+        filename,
+        level: fileLevel
+      })
+    );
+    logger.info(
+      `Logging level ${colors.value(fileLevel)} to ${colors.url(filename)}`
     );
   }
   winston.addColors(levels.colors);
