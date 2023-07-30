@@ -13,6 +13,7 @@ function init({
   levels = options.defaults.log.levels,
   root = options.defaults.log.root
 }: Partial<LogOptions>) {
+  console.log({ logFilePath, stdoutLevel, fileLevel, levels, root });
   logger.configure({
     levels: levels.levels,
     transports: [
