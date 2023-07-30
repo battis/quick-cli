@@ -24,7 +24,7 @@ function init({
   });
   if (logFilePath) {
     const filename = path.resolve(root, logFilePath);
-    logger.transports.push(
+    logger.add(
       new winston.transports.File({
         filename,
         level: fileLevel
