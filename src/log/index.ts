@@ -5,6 +5,10 @@ import options from '../options';
 import { DefaultLevels, LogOptions } from './options';
 
 const logger = winston.createLogger();
+const transports = {
+  console: null,
+  file: null
+};
 
 function init({
   logFilePath = options.defaults.log.logFilePath,
@@ -13,27 +17,25 @@ function init({
   levels = options.defaults.log.levels,
   root = options.defaults.log.root
 }: Partial<LogOptions>) {
+  transports.console = new winston.transports.Console({
+    format: winston.format.printf(({ message }) => message),
+    level: stdoutLevel
+  });
   logger.configure({
     levels: levels.levels,
-    transports: [
-      new winston.transports.Console({
-        format: winston.format.printf(({ message }) => message),
-        level: stdoutLevel
-      })
-    ]
+    transports: [transports.console]
   });
   if (logFilePath) {
     const filename = path.resolve(root, logFilePath);
+    transports.file = new winston.transports.File({
+      filename,
+      level: fileLevel
+    });
     logger.info(
       `Logging level ${colors.value(fileLevel)} to ${colors.url(filename)}`
     );
-    logger.add(
-      new winston.transports.File({
-        filename,
-        format: winston.format.json(),
-        level: fileLevel
-      })
-    );
+    logger.add(transports.file);
+    console.log({ logger, transports });
   }
   winston.addColors(levels.colors);
   return logger;
