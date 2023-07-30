@@ -42,11 +42,15 @@ export default {
         ? !!args.values.silent
         : opt.shell.silent;
     opt.shell.logCommands =
-      args.values.command !== undefined
-        ? !!args.values.command
+      args.values.commands !== undefined
+        ? !!args.values.commands
         : opt.shell.logCommands;
 
     shell.init(opt.shell);
+
+    opt.log.logFilePath = args.values.logFilePath || opt.log.logFilePath;
+    opt.log.stdoutLevel = args.values.stdoutLevel || opt.log.stdoutLevel;
+    opt.log.fileLevel = args.values.fileLevel || opt.log.fileLevel;
     log.init(opt.log);
     console.log({ args });
     return args;
