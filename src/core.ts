@@ -18,6 +18,7 @@ export default {
 
   init: function(config?: Partial<Options>): Arguments {
     const opt = options.hydrate(config || {});
+    console.log({ options, opt });
     if (opt.env.setRootAsCurrentWorkingDirectory) {
       process.chdir(opt.env.root);
       opt.log.root = opt.env.root;
@@ -47,7 +48,7 @@ export default {
 
     shell.init(opt.shell);
     log.init(opt.log);
-
+    console.log({ args });
     return args;
   }
 };

@@ -7,15 +7,6 @@ import {
   OptionsConfig
 } from './types';
 
-const combine = <T>(fallback: T, arg?: T) =>
-  (arg !== undefined ? arg : fallback) as T;
-
-const merge = <T>(fallback: T, arg?: T) =>
-({
-  ...fallback,
-  ...(arg || {})
-} as T);
-
 const defaults: Options = {
   env: {
     root: appRootPath.toString(),
@@ -66,6 +57,15 @@ const defaults: Options = {
 };
 
 function hydrate(options: Partial<Options>): Options {
+  const combine = <T>(fallback: T, arg?: T) =>
+    (arg !== undefined ? arg : fallback) as T;
+
+  const merge = <T>(fallback: T, arg?: T) =>
+  ({
+    ...fallback,
+    ...(arg || {})
+  } as T);
+
   return {
     env: {
       root: combine<string>(defaults.env.root, options?.env?.root),
@@ -119,4 +119,4 @@ function hydrate(options: Partial<Options>): Options {
   };
 }
 
-export default { defaults, combine, merge, hydrate };
+export default { defaults, hydrate };
