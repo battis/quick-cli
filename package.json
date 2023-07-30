@@ -16,7 +16,7 @@
   "scripts": {
     "release": "run-s release:*",
     "release:build": "npm run build",
-    "release:publish": "node bin/release.mjs --yolo --no-release-draft",
+    "release:publish": "np --yolo --no-release-draft",
     "build": "run-s build:*",
     "build:clean": "shx rm -rf dist",
     "build:esm": "babel src --extensions .ts --out-dir dist/esm --out-file-extension .mjs --source-maps --config-file ./babel/esm.json",
