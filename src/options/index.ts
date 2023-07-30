@@ -1,6 +1,5 @@
 import appRootPath from 'app-root-path';
-import { DefaultLevels, LogOptions } from '../log/options';
-import { ShellOptions } from '../shell/options';
+import { CustomLevels, DefaultLevels } from '../log/options';
 import {
   FlagsConfig,
   OptionListsConfig,
@@ -94,8 +93,29 @@ function hydrate(options: Partial<Options>): Options {
       ),
       flags: merge<FlagsConfig>(defaults.args.flags, options?.args?.flags)
     },
-    shell: merge<ShellOptions>(defaults.shell, options?.shell),
-    log: merge<LogOptions>(defaults.log, options?.log)
+    shell: {
+      logCommands: combine<boolean>(
+        defaults.shell.logCommands,
+        options?.shell?.logCommands
+      ),
+      silent: combine<boolean>(defaults.shell.silent, options?.shell?.silent)
+    },
+    log: {
+      logFilePath: combine<string>(
+        defaults.log.logFilePath,
+        options?.log?.logFilePath
+      ),
+      stdoutLevel: combine<string>(
+        defaults.log.stdoutLevel,
+        options?.log?.stdoutLevel
+      ),
+      fileLevel: combine<string>(
+        defaults.log.fileLevel,
+        options?.log?.fileLevel
+      ),
+      levels: combine<CustomLevels>(defaults.log.levels, options?.log?.levels),
+      root: combine<string>(defaults.log.root, options?.log?.root)
+    }
   };
 }
 
