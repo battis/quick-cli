@@ -3,6 +3,10 @@
     "build" : {
       "enabled" : true,
       "script" : "npm run build"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "npm run release"
     }
   },
   "openLogOnRun" : "start"
