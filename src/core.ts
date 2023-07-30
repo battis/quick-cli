@@ -35,8 +35,14 @@ export default {
       console.log(j.usage());
       process.exit(0);
     }
-    opt.shell.silent = !!args.values['silent'];
-    opt.shell.logCommands = !!args.values['commands'];
+    opt.shell.silent =
+      args.values.silent !== undefined
+        ? !!args.values.silent
+        : opt.shell.silent;
+    opt.shell.logCommands =
+      args.values.command !== undefined
+        ? !!args.values.command
+        : opt.shell.logCommands;
 
     shell.init(opt.shell);
     log.init(opt.log);
