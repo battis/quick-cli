@@ -11,6 +11,13 @@ const transports = {
   file: null
 };
 
+const format = {
+  stripColors: winston.format((info) => {
+    info.message = stripAnsi(info.message);
+    return info;
+  })
+};
+
 function init({
   logFilePath = options.defaults.log.logFilePath,
   stdoutLevel = options.defaults.log.stdoutLevel,
@@ -32,9 +39,9 @@ function init({
       filename,
       level: fileLevel,
       format: winston.format.combine(
-        winston.format.json(),
+        format.stripColors(),
         winston.format.timestamp(),
-        winston.format.printf(({ message }) => stripAnsi(message))
+        winston.format.json()
       )
     });
     logger.info(
