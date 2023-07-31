@@ -45,7 +45,7 @@ const defaults: Options = {
   },
   shell: {
     logCommands: true,
-    silent: true
+    silent: false
   },
   log: {
     logFilePath: undefined,

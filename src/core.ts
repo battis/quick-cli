@@ -33,7 +33,7 @@ export default {
       .flag(opt.args.flags);
     const args = j.parse();
     if (args.values['help']) {
-      console.log(j.usage());
+      shell.echo(j.usage());
       process.exit(0);
     }
     opt.shell.silent =

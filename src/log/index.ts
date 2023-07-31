@@ -13,7 +13,11 @@ const transports = {
 
 const format = {
   stripColors: winston.format((info) => {
-    info.message = stripAnsi(info.message);
+    for (const prop in info) {
+      if (typeof info[prop] === 'string') {
+        info[prop] = stripAnsi(info[prop]);
+      }
+    }
     return info;
   })
 };
@@ -48,7 +52,6 @@ function init({
       `Logging level ${colors.value(fileLevel)} to ${colors.url(filename)}`
     );
     logger.add(transports.file);
-    console.log(logger.transports);
   }
   winston.addColors(levels.colors);
   return logger;

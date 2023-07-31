@@ -4,6 +4,13 @@ import log from '../log';
 import options from '../options';
 import { ShellOptions } from './options';
 
+type CommandLogEntry = {
+  message?: string;
+  command: string;
+  stdout: string;
+  stderr: string;
+};
+
 let logCommands: boolean;
 let silent: boolean;
 let previousResult: shell.ShellString;
@@ -21,10 +28,15 @@ export default {
   init,
   get: () => shell,
   exec: function(command: string) {
-    if (!silent && logCommands) {
-      log.info(colors.command(command));
+    if (logCommands) {
+      shell.echo(colors.command(command));
     }
     previousResult = shell.exec(command, { silent });
+    log.debug({
+      command: command,
+      stdout: previousResult.stdout,
+      stderr: previousResult.stderr
+    });
     return previousResult;
   },
 
