@@ -44,6 +44,7 @@
     "@babel/preset-typescript": "^7.22.5",
     "@battis/eslint-config": "latest",
     "@battis/prettier-config": "latest",
+    "@battis/typescript-tricks": "^0.2.2",
     "@tsconfig/recommended": "^1.0.2",
     "@types/is-valid-path": "^0.1.0",
     "@types/node": "^20.4.5",

@@ -1,3 +1,4 @@
+import { RecursivePartial } from '@battis/typescript-tricks';
 import appRootPath from 'app-root-path';
 import { CustomLevels, DefaultLevels } from '../log/options';
 import {
@@ -56,7 +57,7 @@ const defaults: Options = {
   }
 };
 
-function hydrate(options: Partial<Options>): Options {
+function hydrate(options: RecursivePartial<Options>): Options {
   const combine = <T>(fallback: T, arg?: T) =>
     (arg !== undefined ? arg : fallback) as T;
 
@@ -85,13 +86,16 @@ function hydrate(options: Partial<Options>): Options {
       ),
       options: merge<OptionsConfig>(
         defaults.args.options,
-        options?.args?.options
+        options?.args?.options as OptionsConfig
       ),
       optionLists: merge<OptionListsConfig>(
         defaults.args.optionLists,
-        options?.args?.optionLists
+        options?.args?.optionLists as OptionListsConfig
       ),
-      flags: merge<FlagsConfig>(defaults.args.flags, options?.args?.flags)
+      flags: merge<FlagsConfig>(
+        defaults.args.flags,
+        options?.args?.flags as FlagsConfig
+      )
     },
     shell: {
       showCommands: combine<boolean>(
@@ -113,7 +117,10 @@ function hydrate(options: Partial<Options>): Options {
         defaults.log.fileLevel,
         options?.log?.fileLevel
       ),
-      levels: combine<CustomLevels>(defaults.log.levels, options?.log?.levels),
+      levels: combine<CustomLevels>(
+        defaults.log.levels,
+        options?.log?.levels as CustomLevels
+      ),
       root: combine<string>(defaults.log.root, options?.log?.root)
     }
   };

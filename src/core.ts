@@ -1,3 +1,4 @@
+import { RecursivePartial } from '@battis/typescript-tricks';
 import appRootPath from 'app-root-path';
 import dotenv from 'dotenv';
 import { jack } from 'jackspeak';
@@ -16,7 +17,7 @@ export type Arguments = {
 export default {
   appRoot: () => appRootPath.toString(),
 
-  init: function(config?: Partial<Options>): Arguments {
+  init: function(config?: RecursivePartial<Options>): Arguments {
     const opt = options.hydrate(config || {});
     if (opt.env.setRootAsCurrentWorkingDirectory) {
       process.chdir(opt.env.root);
