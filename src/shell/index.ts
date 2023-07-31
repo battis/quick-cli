@@ -44,9 +44,9 @@ export default {
     return result;
   },
 
-  setshowCommands: (commandsAreShownInLog: boolean) =>
-    (showCommands = commandsAreShownInLog),
-  setSilent: (commandsAreExecutedSilently: boolean) =>
-    (silent = commandsAreExecutedSilently),
+  setShowCommands: (commandsAreShownInConsole: boolean) =>
+    (showCommands = commandsAreShownInConsole),
+  setSilent: (commandsAreExecutedSilentlyInConsole: boolean) =>
+    (silent = commandsAreExecutedSilentlyInConsole),
   getPreviousResult: () => result
 };
