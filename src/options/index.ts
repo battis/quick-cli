@@ -44,7 +44,7 @@ const defaults: Options = {
     }
   },
   shell: {
-    logCommands: true,
+    showCommands: true,
     silent: false
   },
   log: {
@@ -94,9 +94,9 @@ function hydrate(options: Partial<Options>): Options {
       flags: merge<FlagsConfig>(defaults.args.flags, options?.args?.flags)
     },
     shell: {
-      logCommands: combine<boolean>(
-        defaults.shell.logCommands,
-        options?.shell?.logCommands
+      showCommands: combine<boolean>(
+        defaults.shell.showCommands,
+        options?.shell?.showCommands
       ),
       silent: combine<boolean>(defaults.shell.silent, options?.shell?.silent)
     },

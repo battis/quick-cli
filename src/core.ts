@@ -40,10 +40,10 @@ export default {
       args.values.silent !== undefined
         ? !!args.values.silent
         : opt.shell.silent;
-    opt.shell.logCommands =
+    opt.shell.showCommands =
       args.values.commands !== undefined
         ? !!args.values.commands
-        : opt.shell.logCommands;
+        : opt.shell.showCommands;
 
     shell.init(opt.shell);
 

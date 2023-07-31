@@ -12,16 +12,16 @@ type CommandLogEntry = {
   stderr?: string;
 };
 
-let logCommands: boolean;
+let showCommands: boolean;
 let silent: boolean;
 let result: shell.ShellString;
 
 function init({
   silent: s = options.defaults.shell.silent,
-  logCommands: lc = options.defaults.shell.logCommands
+  showCommands: lc = options.defaults.shell.showCommands
 }: Partial<ShellOptions>) {
   silent = s;
-  logCommands = lc;
+  showCommands = lc;
 }
 
 export default {
@@ -30,20 +30,22 @@ export default {
   get: () => shell,
   exec: function(command: string) {
     let spinner: Ora;
-    if (logCommands) {
+    if (showCommands && silent) {
       spinner = ora(colors.command(command)).start();
+    } else if (showCommands) {
+      shell.echo(colors.command(command));
     }
     const entry: CommandLogEntry = { command };
     result = shell.exec(command, { silent });
-    result.stdout.length && (entry.stdout = result.stdout);
-    result.stderr.length && (entry.stderr = result.stderr);
+    if (result.stdout.length) entry.stdout = result.stdout;
+    if (result.stderr.length) entry.stderr = result.stderr;
     log.debug(entry);
-    spinner && spinner.succeed(colors.command(command));
+    if (spinner) spinner.succeed(colors.command(command));
     return result;
   },
 
-  setLogCommands: (commandsAreShownInLog: boolean) =>
-    (logCommands = commandsAreShownInLog),
+  setshowCommands: (commandsAreShownInLog: boolean) =>
+    (showCommands = commandsAreShownInLog),
   setSilent: (commandsAreExecutedSilently: boolean) =>
     (silent = commandsAreExecutedSilently),
   getPreviousResult: () => result

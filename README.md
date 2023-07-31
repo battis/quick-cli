@@ -62,8 +62,8 @@ type Options = {
     // display shell command stdout (default `true`)
     silent: boolean;
 
-    // log (level `info`) cli.shell.exec() commands (default `false`)
-    logCommands: boolean;
+    // show cli.shell.exec() commands in console (default `false`)
+    showCommands: boolean;
   };
 
   log: {
