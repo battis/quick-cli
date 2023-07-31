@@ -1,3 +1,4 @@
+import ora from 'ora';
 import path from 'path';
 import stripAnsi from 'strip-ansi';
 import winston from 'winston';
@@ -39,6 +40,7 @@ function init({
   });
   if (logFilePath) {
     const filename = path.resolve(root, logFilePath);
+    const spinner = ora(`Connecting to ${colors.url(filename)}`).start();
     transports.file = new winston.transports.File({
       filename,
       level: fileLevel,
@@ -48,10 +50,10 @@ function init({
         winston.format.json()
       )
     });
-    logger.info(
+    logger.add(transports.file);
+    spinner.succeed(
       `Logging level ${colors.value(fileLevel)} to ${colors.url(filename)}`
     );
-    logger.add(transports.file);
   }
   winston.addColors(levels.colors);
   return logger;
