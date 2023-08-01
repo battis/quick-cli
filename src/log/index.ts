@@ -6,9 +6,14 @@ import colors from '../colors';
 import options from '../options';
 import { DefaultLevels, LogOptions } from './options';
 
-const logger = winston.createLogger();
+const logger = winston.createLogger({
+  transports: []
+});
 const transports = {
-  console: null,
+  console: new winston.transports.Console({
+    format: winston.format.printf(({ message }) => message),
+    level: 'info'
+  }),
   file: null
 };
 
@@ -30,10 +35,7 @@ function init({
   levels = options.defaults.log.levels,
   root = options.defaults.log.root
 }: Partial<LogOptions>) {
-  transports.console = new winston.transports.Console({
-    format: winston.format.printf(({ message }) => message),
-    level: stdoutLevel
-  });
+  transports.console.level = stdoutLevel;
   logger.configure({
     levels: levels.levels,
     transports: [transports.console]

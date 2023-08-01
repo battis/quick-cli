@@ -37,6 +37,12 @@ export default {
       shell.echo(j.usage());
       process.exit(0);
     }
+
+    opt.log.logFilePath = args.values.logFilePath || opt.log.logFilePath;
+    opt.log.stdoutLevel = args.values.stdoutLevel || opt.log.stdoutLevel;
+    opt.log.fileLevel = args.values.fileLevel || opt.log.fileLevel;
+    log.init(opt.log);
+
     opt.shell.silent =
       args.values.silent !== undefined
         ? !!args.values.silent
@@ -48,10 +54,6 @@ export default {
 
     shell.init(opt.shell);
 
-    opt.log.logFilePath = args.values.logFilePath || opt.log.logFilePath;
-    opt.log.stdoutLevel = args.values.stdoutLevel || opt.log.stdoutLevel;
-    opt.log.fileLevel = args.values.fileLevel || opt.log.fileLevel;
-    log.init(opt.log);
     return args;
   }
 };
