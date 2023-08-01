@@ -48,5 +48,7 @@ export default {
     (showCommands = commandsAreShownInConsole),
   setSilent: (commandsAreExecutedSilentlyInConsole: boolean) =>
     (silent = commandsAreExecutedSilentlyInConsole),
+  isSilent: () => silent,
+  commandsShown: () => showCommands,
   getPreviousResult: () => result
 };
