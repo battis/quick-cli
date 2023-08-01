@@ -17,10 +17,14 @@ const maxLength = (maxLength: number) => (value?: string) =>
   (!!value && value.length <= maxLength) ||
   `Must be no more than ${maxLength} characters`;
 
+const isPath = (value?: string) =>
+  (notEmpty(value) && pathValidator(value)) || 'Must be a valid path';
+
 export default {
   notEmpty,
   minLength,
   maxLength,
+  isPath,
 
   match: (pattern: RegExp) => (value?: string) =>
     (!!value && pattern.test(value)) ||
@@ -37,9 +41,6 @@ export default {
   cron: (value?: string) =>
     (notEmpty(value) && cronValidator(value || '').isValid()) ||
     'Must be valid cron schedule',
-
-  isPath: (value?: string) =>
-    (notEmpty(value) && pathValidator(value)) || 'Must be a valid path',
 
   isHostname:
     ({
@@ -64,11 +65,12 @@ export default {
             allowed.includes(value))) ||
         'Must be a valid hostname',
 
-  pathExists: function(value?: string) {
-    const possiblePath = path.resolve(core.appRoot(), value || '');
-    return (
-      (notEmpty(value) && fs.existsSync(possiblePath)) ||
-      `${possiblePath} does not exist`
-    );
-  }
+  pathExists: (root = core.appRoot()) =>
+    function(value?: string) {
+      const possiblePath = path.resolve(root, value || '');
+      return (
+        (isPath(value) && fs.existsSync(possiblePath)) ||
+        `${possiblePath} does not exist`
+      );
+    }
 };
