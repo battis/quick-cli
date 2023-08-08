@@ -72,5 +72,13 @@ export default {
         (isPath(value) && fs.existsSync(possiblePath)) ||
         `${possiblePath} does not exist`
       );
-    }
+    },
+
+  combine:
+    (...validators: ((value?: string) => boolean | string)[]) =>
+      (value?: string) =>
+        validators.reduce(
+          (valid, validator) => (validator ? valid && validator(value) : valid),
+          true
+        )
 };
