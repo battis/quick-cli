@@ -1,7 +1,7 @@
 import cronValidator from 'cron-validate';
 import emailValidator from 'email-validator';
 import fs from 'fs';
-import domainValidator from 'is-valid-domain';
+import domainValidator from 'is-domain-valid';
 import pathValidator from 'is-valid-path';
 import path from 'path';
 import core from './core';
@@ -52,21 +52,25 @@ export default {
       ipAddress = true,
       allowed = []
     }) =>
-      (value?: string) =>
+    (value?: string) => {
+      const domain = domainValidator(value, {
+        allowSubdomain: subdomain,
+        allowWildcard: wildcard,
+        allowIdn: allowUnicode,
+        checkTld: topLevel
+      });
+      return (
         (!!value &&
-          (domainValidator(value, {
-            subdomain,
-            wildcard,
-            allowUnicode,
-            topLevel
-          }) ||
+          (domain.result ||
             (localhost && value === 'localhost') ||
             (ipAddress && /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(value)) ||
             allowed.includes(value))) ||
-        'Must be a valid hostname',
+        `Must be a valid hostname${domain.result ? '' : ` (${domain.message})`}`
+      );
+    },
 
   pathExists: (root = core.appRoot()) =>
-    function(value?: string) {
+    function (value?: string) {
       const possiblePath = path.resolve(root, value || '');
       return (
         (isPath(value) && fs.existsSync(possiblePath)) ||
@@ -76,9 +80,9 @@ export default {
 
   combine:
     (...validators: ((value?: string) => boolean | string)[]) =>
-      (value?: string) =>
-        validators.reduce(
-          (valid, validator) => (validator ? valid && validator(value) : valid),
-          true
-        )
+    (value?: string) =>
+      validators.reduce(
+        (valid, validator) => (validator ? valid && validator(value) : valid),
+        true
+      )
 };
