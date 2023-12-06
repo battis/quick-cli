@@ -79,10 +79,11 @@ export default {
     },
 
   combine:
-    (...validators: ((value?: string) => boolean | string)[]) =>
+    (...validators: (((value?: string) => boolean | string) | undefined)[]) =>
     (value?: string) =>
       validators.reduce(
-        (valid, validator) => (validator ? valid && validator(value) : valid),
+        (valid, validator) =>
+          validator ? (valid && validator ? validator(value) : true) : valid,
         true
       )
 };
