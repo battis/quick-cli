@@ -14,6 +14,7 @@ export type EnvironmentOptions = {
 
 export type ArgumentOptions = {
   envPrefix: string;
+  requirePositionals: boolean | number;
   options: OptionsConfig;
   optionLists: OptionListsConfig;
   flags: FlagsConfig;

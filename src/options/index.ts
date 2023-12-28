@@ -16,6 +16,7 @@ const defaults: Options = {
   },
   args: {
     envPrefix: 'ARG',
+    requirePositionals: false,
     options: {
       logFilePath: {
         description: 'Path to log file'
@@ -62,10 +63,10 @@ function hydrate(options: RecursivePartial<Options>): Options {
     (arg !== undefined ? arg : fallback) as T;
 
   const merge = <T>(fallback: T, arg?: T) =>
-  ({
-    ...fallback,
-    ...(arg || {})
-  } as T);
+    ({
+      ...fallback,
+      ...(arg || {})
+    } as T);
 
   return {
     env: {
@@ -83,6 +84,10 @@ function hydrate(options: RecursivePartial<Options>): Options {
       envPrefix: combine<string>(
         defaults.args.envPrefix,
         options?.args?.envPrefix
+      ),
+      requirePositionals: combine<boolean | number>(
+        defaults.args.requirePositionals,
+        options?.args?.requirePositionals
       ),
       options: merge<OptionsConfig>(
         defaults.args.options,
