@@ -51,6 +51,7 @@ type Options = {
    */
   args: {
     envPrefix: string;
+    requirePositionals: boolean | number; // number of (or if) positional args required
     options: OptionsConfig; // jack.opt()
     optionLists: OptionListsConfig; // jack.optList()
 
