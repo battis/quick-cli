@@ -17,7 +17,7 @@
     "release": "run-s release:*",
     "release:build": "run build",
     "release:changeset": "changeset version",
-    "release:publish": "publish --otp $(op get item npm --otp)",
+    "release:publish": "pnpm publish --otp $(op get item npm --otp)",
     "build": "run-s build:*",
     "build:clean": "shx rm -rf dist",
     "build:esm": "babel src --extensions .ts --out-dir dist/esm --out-file-extension .mjs --source-maps --config-file ./babel/esm.json",
