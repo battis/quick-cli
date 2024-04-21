@@ -39,6 +39,9 @@ type DeleteOptions = {
 
 function readFile(file: string) {
   const filePath = path.resolve(AppRootPath.toString(), file);
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, '');
+  }
   return fs.readFileSync(filePath, 'utf8');
 }
 
@@ -51,7 +54,7 @@ export default {
   exists,
   get,
 
-  set: function({
+  set: function ({
     key,
     value,
     file = '.env',
@@ -67,14 +70,15 @@ export default {
       if (pattern.test(env)) {
         env = env.replace(pattern, `${key}=${value}\n`);
       } else {
-        env = `${env.trim()}\n${comment ? `\n# ${comment}\n` : ''
-          }${key}=${value}\n`;
+        env = `${env.trim()}\n${
+          comment ? `\n# ${comment}\n` : ''
+        }${key}=${value}\n`;
       }
       writeFile(file, env);
     }
   },
 
-  delete: function({ key, file = '.env', comment }: DeleteOptions) {
+  delete: function ({ key, file = '.env', comment }: DeleteOptions) {
     const env = readFile(file);
     const pattern = new RegExp(`${key}=.*\\n`);
     if (pattern.test(env)) {
