@@ -15,7 +15,7 @@
   },
   "scripts": {
     "release": "run-s release:*",
-    "release:build": "run build",
+    "release:build": "run-s build",
     "release:changeset": "changeset version",
     "release:publish": "pnpm publish --otp $(op get item npm --otp)",
     "build": "run-s build:*",
