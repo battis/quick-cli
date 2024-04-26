@@ -1,9 +1,9 @@
-import ora, { Ora } from 'ora';
-import shell from 'shelljs';
 import colors from '../colors';
-import log from '../log';
+import * as log from '../log';
 import options from '../options';
 import { ShellOptions } from './options';
+import ora, { Ora } from 'ora';
+import shell from 'shelljs';
 
 type CommandLogEntry = {
   message?: string;
@@ -28,7 +28,7 @@ export default {
   ...shell,
   init,
   get: () => shell,
-  exec: function(command: string) {
+  exec: function (command: string) {
     let spinner: Ora;
     if (showCommands && silent) {
       spinner = ora(colors.command(command)).start();

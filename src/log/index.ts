@@ -1,10 +1,10 @@
+import colors from '../colors';
+import options from '../options';
+import { DefaultLevels, LogOptions } from './options';
 import ora from 'ora';
 import path from 'path';
 import stripAnsi from 'strip-ansi';
 import winston from 'winston';
-import colors from '../colors';
-import options from '../options';
-import { DefaultLevels, LogOptions } from './options';
 
 const logger = winston.createLogger({
   transports: []
@@ -28,7 +28,7 @@ const format = {
   })
 };
 
-function init({
+export function init({
   logFilePath = options.defaults.log.logFilePath,
   stdoutLevel = options.defaults.log.stdoutLevel,
   fileLevel = options.defaults.log.fileLevel,
@@ -61,22 +61,21 @@ function init({
   return logger;
 }
 
-const get = () => logger || init({});
+export function get() {
+  return logger || init({});
+}
 
-const namedLogMethod =
-  (level: string) =>
-    (message: string, ...meta: any[]) =>
-      logger.log(level, message, ...meta);
+function namedLogMethod(level: string) {
+  return (message: string, ...meta: any[]) =>
+    logger.log(level, message, ...meta);
+}
 
-export default {
-  init,
-  get,
-  log: logger.log.bind(logger),
-  trace: namedLogMethod('trace'),
-  debug: logger.debug.bind(logger),
-  info: logger.info.bind(logger),
-  warning: namedLogMethod('warning'),
-  error: logger.error.bind(logger),
-  fatal: namedLogMethod('fatal'),
-  DefaultLevels
-};
+export const log = logger.log.bind(logger);
+export const trace = namedLogMethod('trace');
+export const debug = logger.debug.bind(logger);
+export const info = logger.info.bind(logger);
+export const warning = namedLogMethod('warning');
+export const error = logger.error.bind(logger);
+export const fatal = namedLogMethod('fatal');
+
+export { DefaultLevels };

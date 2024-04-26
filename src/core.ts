@@ -1,13 +1,12 @@
-import { RecursivePartial } from '@battis/typescript-tricks';
-import appRootPath from 'app-root-path';
-import dotenv from 'dotenv';
-import { jack } from 'jackspeak';
-import path from 'path';
-import process from 'process';
-import log from './log';
+import * as env from './env';
+import * as log from './log';
 import options from './options';
 import { Options } from './options/types';
 import shell from './shell';
+import { RecursivePartial } from '@battis/typescript-tricks';
+import appRootPath from 'app-root-path';
+import { jack } from 'jackspeak';
+import process from 'process';
 
 export type Arguments = {
   values: { [name: string]: string };
@@ -19,15 +18,9 @@ export default {
 
   init: function (config?: RecursivePartial<Options>): Arguments {
     const opt = options.hydrate(config || {});
-    if (opt.env.setRootAsCurrentWorkingDirectory) {
-      process.chdir(opt.env.root);
-      opt.log.root = opt.env.root;
-    }
-    if (opt.env.loadDotEnv === true) {
-      dotenv.config();
-    } else if (typeof opt.env.loadDotEnv === 'string') {
-      dotenv.config({ path: path.resolve(process.cwd(), opt.env.loadDotEnv) });
-    }
+
+    env.init(opt.env);
+
     const allowPositionals = !!opt.args.requirePositionals;
     const j = jack({ envPrefix: opt.args.envPrefix, allowPositionals })
       .opt(opt.args.options)
@@ -60,6 +53,9 @@ export default {
       process.exit(0);
     }
 
+    if (opt.env.setRootAsCurrentWorkingDirectory) {
+      opt.log.root = opt.env.root;
+    }
     opt.log.logFilePath = args.values.logFilePath || opt.log.logFilePath;
     opt.log.stdoutLevel = args.values.stdoutLevel || opt.log.stdoutLevel;
     opt.log.fileLevel = args.values.fileLevel || opt.log.fileLevel;
