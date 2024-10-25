@@ -1,10 +1,10 @@
+import core from './core.js';
+import domainValidator from '@tahul/is-valid-domain';
 import cronValidator from 'cron-validate';
 import emailValidator from 'email-validator';
 import fs from 'fs';
-import domainValidator from 'is-domain-valid';
 import pathValidator from 'is-valid-path';
 import path from 'path';
-import core from './core';
 
 export type Validator = (value?: string) => boolean | string;
 
@@ -49,6 +49,8 @@ export function email(value?: string) {
 
 export function cron(value?: string) {
   return (
+    // FIXME cronValidator callable
+    // @ts-ignore
     (notEmpty(value) && cronValidator(value || '').isValid()) ||
     'Must be valid cron schedule'
   );
@@ -62,21 +64,32 @@ export function isHostname({
   localhost = true,
   ipAddress = true,
   allowed = []
+}: {
+  subdomain?: boolean;
+  wildcard?: boolean;
+  allowUnicode?: boolean;
+  topLevel?: boolean;
+  localhost?: boolean;
+  ipAddress?: boolean;
+  allowed?: string[];
 }): Validator {
   return (value?: string) => {
-    const domain = domainValidator(value, {
-      allowSubdomain: subdomain,
-      allowWildcard: wildcard,
-      allowIdn: allowUnicode,
-      checkTld: topLevel
-    });
+    let domain;
+    if (value) {
+      domain = domainValidator(value, {
+        subdomain,
+        wildcard,
+        allowUnicode,
+        topLevel
+      });
+    }
     return (
       (!!value &&
-        (domain.result ||
+        (domain ||
           (localhost && value === 'localhost') ||
           (ipAddress && /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(value)) ||
           allowed.includes(value))) ||
-      `Must be a valid hostname${domain.result ? '' : ` (${domain.message})`}`
+      `Must be a valid hostname`
     );
   };
 }
@@ -94,7 +107,7 @@ export function pathExists(root = core.appRoot()): Validator {
 export function combine(...validators: (Validator | undefined)[]): Validator {
   return (value?: string) =>
     validators.reduce(
-      (valid, validator?: Validator) =>
+      (valid: string | boolean, validator?: Validator) =>
         validator ? (valid && validator ? validator(value) : true) : valid,
       true
     );

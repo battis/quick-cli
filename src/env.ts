@@ -1,5 +1,5 @@
-import options from '../options';
-import { EnvironmentOptions } from './options';
+import { EnvironmentOptions } from './env/options.js';
+import options from './options.js';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
@@ -35,7 +35,7 @@ export function parse(file = '.env') {
   if (env.error) {
     throw env.error;
   }
-  return env.parsed;
+  return env.parsed || {};
 }
 
 type GetOptions = {

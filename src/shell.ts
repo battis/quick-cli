@@ -1,7 +1,7 @@
-import colors from '../colors';
-import * as log from '../log';
-import options from '../options';
-import { ShellOptions } from './options';
+import colors from './colors.js';
+import * as log from './log.js';
+import options from './options.js';
+import { ShellOptions } from './shell/options.js';
 import ora, { Ora } from 'ora';
 import shell from 'shelljs';
 
@@ -29,7 +29,7 @@ export default {
   init,
   get: () => shell,
   exec: function (command: string) {
-    let spinner: Ora;
+    let spinner: Ora | undefined = undefined;
     if (showCommands && silent) {
       spinner = ora(colors.command(command)).start();
     } else if (showCommands) {
@@ -40,7 +40,9 @@ export default {
     if (result.stdout.length) entry.stdout = result.stdout;
     if (result.stderr.length) entry.stderr = result.stderr;
     log.debug(entry);
-    if (spinner) spinner.succeed(colors.command(command));
+    if (spinner) {
+      spinner.succeed(colors.command(command));
+    }
     return result;
   },
 

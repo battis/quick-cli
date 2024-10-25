@@ -1,8 +1,8 @@
-import * as env from './env';
-import * as log from './log';
-import options from './options';
-import { Options } from './options/types';
-import shell from './shell';
+import * as env from './env.js';
+import * as log from './log.js';
+import options from './options.js';
+import { Options } from './options/types.js';
+import shell from './shell.js';
 import { RecursivePartial } from '@battis/typescript-tricks';
 import appRootPath from 'app-root-path';
 import { jack } from 'jackspeak';
@@ -72,6 +72,6 @@ export default {
 
     shell.init(opt.shell);
 
-    return args;
+    return args as Arguments;
   }
 };

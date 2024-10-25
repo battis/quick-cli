@@ -1,6 +1,6 @@
-import { EnvironmentOptions } from '../env/options';
-import { LogOptions } from '../log/options';
-import { ShellOptions } from '../shell/options';
+import { EnvironmentOptions } from '../env/options.js';
+import { LogOptions } from '../log/options.js';
+import { ShellOptions } from '../shell/options.js';
 import { ConfigMetaSet } from 'jackspeak';
 
 export type OptionsConfig = ConfigMetaSet<'string', false>;

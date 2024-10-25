@@ -1,6 +1,6 @@
-import colors from '../colors';
-import options from '../options';
-import { DefaultLevels, LogOptions } from './options';
+import colors from './colors.js';
+import { DefaultLevels, LogOptions } from './log/options.js';
+import options from './options.js';
 import ora from 'ora';
 import path from 'path';
 import stripAnsi from 'strip-ansi';
@@ -9,12 +9,11 @@ import winston from 'winston';
 const logger = winston.createLogger({
   transports: []
 });
-const transports = {
+const transports: Record<string, winston.transport> = {
   console: new winston.transports.Console({
     format: winston.format.printf(({ message }) => message),
     level: 'info'
-  }),
-  file: null
+  })
 };
 
 const format = {

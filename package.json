@@ -8,53 +8,50 @@
   },
   "license": "GPL-3.0",
   "target": "node",
-  "main": "./dist/esm/index.mjs",
-  "types": "./dist/types/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "engines": {
     "node": ">=12.17"
   },
   "scripts": {
+    "clean": "del ./dist/*",
     "release": "run-s release:*",
     "release:build": "run-s build",
     "release:changeset": "changeset version",
     "release:publish": "pnpm publish --otp $(op item get npm --otp)",
     "build": "run-s build:*",
-    "build:clean": "shx rm -rf dist",
-    "build:esm": "babel src --extensions .ts --out-dir dist/esm --out-file-extension .mjs --source-maps --config-file ./babel/esm.json",
-    "build:types": "tsc"
+    "build:clean": "run-s clean",
+    "build:compile": "tsc"
   },
   "dependencies": {
     "@inquirer/prompts": "^2.3.1",
+    "@tahul/is-valid-domain": "^1.0.5",
     "app-root-path": "^3.1.0",
     "chalk": "^4.1.2",
     "cron-validate": "^1.4.5",
     "dotenv": "^16.4.5",
     "email-validator": "^2.0.4",
-    "is-domain-valid": "^1.2.0",
     "is-valid-path": "^0.1.1",
     "jackspeak": "^2.3.6",
     "ora": "^6.3.1",
     "shelljs": "^0.8.5",
     "strip-ansi": "^7.1.0",
-    "winston": "^3.13.0"
+    "winston": "^3.15.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.24.1",
-    "@babel/core": "^7.24.4",
-    "@babel/preset-env": "^7.24.4",
-    "@babel/preset-typescript": "^7.24.1",
     "@battis/eslint-config": "latest",
     "@battis/prettier-config": "latest",
     "@battis/typescript-tricks": "^0.2.2",
-    "@changesets/cli": "^2.27.1",
-    "@tsconfig/recommended": "^1.0.6",
+    "@changesets/cli": "^2.27.9",
+    "@tsconfig/node20": "^20.1.4",
+    "@tsconfig/recommended": "^1.0.7",
     "@types/is-valid-path": "^0.1.2",
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.17.0",
     "@types/shelljs": "^0.8.15",
-    "babel-plugin-add-import-extension": "^1.6.0",
-    "babel-plugin-add-module-exports": "^1.0.4",
+    "del-cli": "^6.0.0",
     "npm-run-all": "^4.1.5",
-    "shx": "^0.3.4"
+    "typescript": "^5.6.3"
   },
   "prettier": "@battis/prettier-config",
   "eslintConfig": {
