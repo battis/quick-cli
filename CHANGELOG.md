@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.5.0
+
+### Minor Changes
+
+- 458c489: babel --> tsc
+
 ## 0.4.2
 
 ### Patch Changes
