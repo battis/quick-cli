@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.5.1
+
+### Patch Changes
+
+- 38e585c: tweaking colors to be more consistent with default node ANSI colors
+
 ## 0.5.0
 
 ### Minor Changes
