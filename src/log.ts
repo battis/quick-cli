@@ -73,7 +73,11 @@ function colorObject(obj: object) {
 function namedLogMethod(level: string) {
   return (message: string | object, ...meta: any[]) => {
     if (typeof message != 'string') {
-      message = colorObject(message);
+      if (meta.some((elt: any) => elt.color === false)) {
+        message = JSON.stringify(message, null, 2);
+      } else {
+        message = colorObject(message);
+      }
     }
     return logger.log(level, message, ...meta);
   };
