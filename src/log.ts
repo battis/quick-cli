@@ -1,10 +1,10 @@
-import colors from './colors.js';
-import { DefaultLevels, LogOptions } from './log/options.js';
-import options from './options.js';
 import ora from 'ora';
 import path from 'path';
 import stripAnsi from 'strip-ansi';
 import winston from 'winston';
+import colors from './colors.js';
+import { DefaultLevels, LogOptions } from './log/options.js';
+import options from './options.js';
 
 const logger = winston.createLogger({
   transports: []
@@ -64,17 +64,27 @@ export function get() {
   return logger || init({});
 }
 
+function colorObject(obj: object) {
+  return JSON.stringify(obj, null, 2)
+    .replace(/: ([^"{[][^,]*)/g, `: ${colors.value('$1')}`)
+    .replace(/: ("([^"]|\\")*")/g, `: ${colors.quotedValue('$1')}`);
+}
+
 function namedLogMethod(level: string) {
-  return (message: string, ...meta: any[]) =>
-    logger.log(level, message, ...meta);
+  return (message: string | object, ...meta: any[]) => {
+    if (typeof message != 'string') {
+      message = colorObject(message);
+    }
+    return logger.log(level, message, ...meta);
+  };
 }
 
 export const log = logger.log.bind(logger);
 export const trace = namedLogMethod('trace');
-export const debug = logger.debug.bind(logger);
-export const info = logger.info.bind(logger);
+export const debug = namedLogMethod('debug');
+export const info = namedLogMethod('info');
 export const warning = namedLogMethod('warning');
-export const error = logger.error.bind(logger);
+export const error = namedLogMethod('error');
 export const fatal = namedLogMethod('fatal');
 
 export { DefaultLevels };
