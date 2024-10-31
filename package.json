@@ -1,6 +1,6 @@
 {
   "name": "@battis/qui-cli",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Quickly build a CLI app",
   "license": "GPL-3.0",
   "author": {
@@ -57,4 +57,3 @@
   },
   "target": "node"
 }
-

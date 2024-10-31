@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.6.0
+
+### Minor Changes
+
+- 78f2a09: Objects sent to logs automatically stringified
+
 ## 0.5.1
 
 ### Patch Changes
