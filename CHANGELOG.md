@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.6.2
+
+### Patch Changes
+
+- fddddcd: more careful handling of undefined message
+
 ## 0.6.1
 
 ### Patch Changes
