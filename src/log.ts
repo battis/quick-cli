@@ -72,11 +72,19 @@ function colorObject(obj: object) {
 
 function namedLogMethod(level: string) {
   return (message: string | object, ...meta: any[]) => {
-    if (message === undefined || typeof message != 'string') {
+    if (typeof message != 'string') {
       if (meta.some((elt: any) => elt.color === false)) {
-        message = JSON.stringify(message, null, 2);
+        if (message === undefined) {
+          message = 'undefined';
+        } else {
+          message = JSON.stringify(message, null, 2);
+        }
       } else {
-        message = colorObject(message);
+        if (message === undefined) {
+          message = colors.value('undefined');
+        } else {
+          message = colorObject(message);
+        }
       }
     }
     return logger.log(level, message, ...meta);
