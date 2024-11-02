@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.6.1
+
+### Patch Changes
+
+- e4ac763: undefined message
+
 ## 0.6.0
 
 ### Minor Changes
