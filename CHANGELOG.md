@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.6.3
+
+### Patch Changes
+
+- 22e6e85: regexp value
+
 ## 0.6.2
 
 ### Patch Changes
