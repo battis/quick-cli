@@ -1,12 +1,12 @@
+import { RecursivePartial } from '@battis/typescript-tricks';
+import appRootPath from 'app-root-path';
+import { jack, Jack } from 'jackspeak';
+import process from 'process';
 import * as env from './env.js';
 import * as log from './log.js';
 import options from './options.js';
 import { Options } from './options/types.js';
 import shell from './shell.js';
-import { RecursivePartial } from '@battis/typescript-tricks';
-import appRootPath from 'app-root-path';
-import { jack } from 'jackspeak';
-import process from 'process';
 
 export type Arguments = {
   values: { [name: string]: string };
@@ -21,11 +21,26 @@ export default {
 
     env.init(opt.env);
 
-    const allowPositionals = !!opt.args.requirePositionals;
-    const j = jack({ envPrefix: opt.args.envPrefix, allowPositionals })
-      .opt(opt.args.options)
-      .optList(opt.args.optionLists)
-      .flag(opt.args.flags);
+    const {
+      envPrefix,
+      requirePositionals,
+      options: _options,
+      optionLists,
+      flags,
+      ...jackOptions
+    } = opt.args;
+
+    const allowPositionals = !!requirePositionals;
+    let j = jack({ envPrefix, allowPositionals })
+      .opt(_options)
+      .optList(optionLists)
+      .flag(flags);
+    for (const jackOption in jackOptions) {
+      if (typeof j[jackOption as keyof Jack] === 'function') {
+        // @ts-ignore FIXME typing gets... tricky here
+        j = j[jackOption](jackOptions[jackOption]);
+      }
+    }
     const args = j.parse();
     if (
       args.values['help'] ||

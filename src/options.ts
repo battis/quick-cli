@@ -1,3 +1,5 @@
+import { RecursivePartial } from '@battis/typescript-tricks';
+import appRootPath from 'app-root-path';
 import { CustomLevels, DefaultLevels } from './log/options.js';
 import {
   FlagsConfig,
@@ -5,8 +7,6 @@ import {
   Options,
   OptionsConfig
 } from './options/types.js';
-import { RecursivePartial } from '@battis/typescript-tricks';
-import appRootPath from 'app-root-path';
 
 const defaults: Options = {
   env: {
@@ -66,7 +66,7 @@ function hydrate(options: RecursivePartial<Options>): Options {
     ({
       ...fallback,
       ...(arg || {})
-    } as T);
+    }) as T;
 
   return {
     env: {
@@ -81,6 +81,7 @@ function hydrate(options: RecursivePartial<Options>): Options {
       )
     },
     args: {
+      ...options?.args,
       envPrefix: combine<string>(
         defaults.args.envPrefix,
         options?.args?.envPrefix
