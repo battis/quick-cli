@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.7.0
+
+### Minor Changes
+
+- d5c29cb: extended jackspeak options
+
 ## 0.6.3
 
 ### Patch Changes
