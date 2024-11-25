@@ -1,9 +1,9 @@
+import ora, { Ora } from 'ora';
+import shell from 'shelljs';
 import colors from './colors.js';
 import * as log from './log.js';
 import options from './options.js';
 import { ShellOptions } from './shell/options.js';
-import ora, { Ora } from 'ora';
-import shell from 'shelljs';
 
 type CommandLogEntry = {
   message?: string;
@@ -24,6 +24,13 @@ function init({
   showCommands = lc;
 }
 
+function keywords(command: string) {
+  return command.replace(
+    /((^\s*|\|\|?|&&)\s*)(\w+)/gm,
+    `$1${colors.keyword('$3')}`
+  );
+}
+
 export default {
   ...shell,
   init,
@@ -31,9 +38,9 @@ export default {
   exec: function (command: string) {
     let spinner: Ora | undefined = undefined;
     if (showCommands && silent) {
-      spinner = ora(colors.command(command)).start();
+      spinner = ora(colors.command(keywords(command))).start();
     } else if (showCommands) {
-      shell.echo(colors.command(command));
+      shell.echo(colors.command(keywords(command)));
     }
     const entry: CommandLogEntry = { command };
     result = shell.exec(command, { silent });
