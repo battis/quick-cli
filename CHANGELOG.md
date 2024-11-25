@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.7.2
+
+### Patch Changes
+
+- 896ed6e: keyword highlighting
+
 ## 0.7.1
 
 ### Patch Changes
