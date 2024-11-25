@@ -48,7 +48,7 @@ export default {
     if (result.stderr.length) entry.stderr = result.stderr;
     log.debug(entry);
     if (spinner) {
-      spinner.succeed(colors.command(command));
+      spinner.succeed(colors.command(keywords(command)));
     }
     return result;
   },
