@@ -50,6 +50,7 @@
     "@types/shelljs": "^0.8.15",
     "del-cli": "^6.0.0",
     "npm-run-all": "^4.1.5",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   },
   "engines": {
