@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.7.1
+
+### Patch Changes
+
+- 1bd4e0e: updated colors
+
 ## 0.7.0
 
 ### Minor Changes
