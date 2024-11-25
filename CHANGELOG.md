@@ -1,5 +1,11 @@
 # @battis/qui-cli
 
+## 0.7.3
+
+### Patch Changes
+
+- 86c0143: missing keyword
+
 ## 0.7.2
 
 ### Patch Changes
