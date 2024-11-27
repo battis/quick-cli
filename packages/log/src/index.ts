@@ -130,7 +130,7 @@ export class Log extends plugin.Base {
 
   private colorObject(obj: object) {
     return JSON.stringify(obj, null, 2)
-      .replace(/: ([^"{[][^,]*)/g, `: ${colors.value('$1')}`)
+      .replace(/: ([^"{[][^,\n]*)/g, `: ${colors.value('$1')}`)
       .replace(/: ("([^"]|\\")*")/g, `: ${colors.quotedValue('$1')}`);
   }
 
