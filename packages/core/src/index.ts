@@ -148,6 +148,9 @@ export class Core {
       process.exit(0);
     }
 
+    for (const plugin of this.plugins) {
+      plugin.init({ positionals, values });
+    }
     return { positionals, values };
   }
 
