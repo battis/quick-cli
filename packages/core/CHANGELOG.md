@@ -1,5 +1,11 @@
 # @battis/qui-cli.core
 
+## 0.8.1
+
+### Patch Changes
+
+- ab8ce9f: fix args
+
 ## 0.8.0
 
 ### Minor Changes

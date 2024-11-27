@@ -1,6 +1,6 @@
 {
   "name": "@battis/qui-cli.core",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Core features of @battis/qui-cli",
   "homepage": "https://github.com/battis/qui-cli/tree/main/packages/core#readme",
   "repository": {
