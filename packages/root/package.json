@@ -1,6 +1,6 @@
 {
   "name": "@battis/qui-cli.root",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Identify the root of the current application",
   "homepage": "https://github.com/battis/qui-cli/tree/main/packages/root#readme",
   "repository": {
