@@ -37,8 +37,8 @@ export type Options = {
 };
 
 export type Arguments<O extends Options = Options> = {
-  positionals?: string[];
-  values?: OptionsResults<
+  positionals: string[];
+  values: OptionsResults<
     Record<keyof O['num'], ConfigOptionBase<'number', false>> &
       Record<keyof O['numList'], ConfigOptionBase<'number', true>> &
       Record<
