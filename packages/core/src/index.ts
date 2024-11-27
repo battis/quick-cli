@@ -88,7 +88,7 @@ export class Core {
       plugin.options && this.apply(plugin.options());
     }
 
-    const { positionals, values } = this.jack.parse();
+    const { positionals = [], values = {} } = this.jack.parse();
 
     if (
       this.requirePositionals &&
