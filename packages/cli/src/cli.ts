@@ -6,6 +6,7 @@ import * as plugin from '@battis/qui-cli.plugin';
 import { Root } from '@battis/qui-cli.root';
 import { Shell, Options as ShellOptions } from '@battis/qui-cli.shell';
 import { Validators } from '@battis/qui-cli.validators';
+import { RecursivePartial } from '@battis/typescript-tricks';
 import * as prompts from '@inquirer/prompts';
 import spinner from 'ora';
 
@@ -22,26 +23,35 @@ export type Arguments<O extends plugin.Options = plugin.Options> =
     plugin.Arguments<ReturnType<Shell['options']>> &
     plugin.Arguments<O>;
 
+function init({ env, args, log, shell }: Options = {}) {
+  const core = new Core();
+  core.register(Root.getInstance({ root: env?.root }));
+  core.register(Colors.getInstance());
+  core.register(Env.getInstance({ root: Root.getInstance().path(), ...env }));
+  core.register(Log.getInstance(log));
+  core.register(Shell.getInstance(shell));
+  core.register(Validators.getInstance());
+  const {
+    requirePositionals,
+    allowPositionals,
+    envPrefix,
+    env: _env,
+    usage,
+    stopAtPositional,
+    ...options
+  } = args || {};
+  return core.init(args) as Arguments<typeof options>;
+}
+
+const defaults = {
+  env: Env.defaults,
+  args: Core.defaults,
+  log: Log.defaults,
+  shell: Shell.defaults
+};
+
 export const cli = {
-  init({ env, args, log, shell }: Options = {}) {
-    const core = new Core();
-    core.register(Root.getInstance({ root: env?.root }));
-    core.register(Colors.getInstance());
-    core.register(Env.getInstance({ root: Root.getInstance().path(), ...env }));
-    core.register(Log.getInstance(log));
-    core.register(Shell.getInstance(shell));
-    core.register(Validators.getInstance());
-    const {
-      requirePositionals,
-      allowPositionals,
-      envPrefix,
-      env: _env,
-      usage,
-      stopAtPositional,
-      ...options
-    } = args || {};
-    return core.init(args) as Arguments<typeof options>;
-  },
+  init,
   appRoot: Root.getInstance().path(),
   colors: Colors.getInstance(),
   env: Env.getInstance(),
@@ -49,15 +59,23 @@ export const cli = {
   shell: Shell.getInstance(),
   validators: Validators.getInstance(),
 
-  // FIXME actual values for options?
   options: {
-    defaults: {
-      env: Env.defaults,
-      args: Core.defaults,
-      log: Log.defaults,
-      shell: Shell.defaults
-    },
-    hydrate: (obj: any) => obj
+    defaults,
+    hydrate: (
+      options: Partial<{
+        env: Partial<EnvOptions>;
+        args: Partial<CoreOptions>;
+        log: Partial<LogOptions>;
+        shell: Partial<ShellOptions>;
+      }>
+    ): Parameters<typeof init>[0] => {
+      return {
+        env: { ...defaults.env, ...options?.env },
+        args: { ...defaults.args, ...options?.args },
+        log: { ...defaults.log, ...options?.log },
+        shell: { ...defaults.shell, ...options?.shell }
+      };
+    }
   },
 
   /** @deprecated use @inquirer/prompts directly */
