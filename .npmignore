@@ -1,5 +1,4 @@
 .*
-/babel
-/bin
-/src
-/tsconfig.*
+**/bin/
+**/src/
+**/tsconfig.json

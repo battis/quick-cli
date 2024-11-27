@@ -1,61 +1,38 @@
 {
-  "name": "@battis/qui-cli",
-  "version": "0.7.3",
-  "description": "Quickly build a CLI app",
+  "homepage": "https://github.com/battis/qui-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/battis/qui-cli.git"
+  },
   "license": "GPL-3.0",
   "author": {
     "name": "Seth Battis",
     "url": "https://github.com/battis"
   },
   "type": "module",
-  "main": "./dist/cli.js",
-  "types": "./dist/cli.d.ts",
   "scripts": {
-    "clean": "del ./dist",
+    "build": "lerna run build",
+    "pre-changeset": "run-s pre-changeset:*",
+    "pre-changeset:monorepo-package-paths": "npx monorepo-package-paths -w --author --homepage --repository",
+    "pre-changeset:build": "run-s build",
     "release": "run-s release:*",
-    "release:build": "run-s build",
     "release:changeset": "changeset version",
-    "release:publish": "pnpm publish --otp $(op item get npm --otp)",
-    "build": "run-s build:*",
-    "build:clean": "run-s clean",
-    "build:compile": "tsc"
+    "release:publish": "pnpm publish --otp $(op item get npm --otp)"
   },
   "prettier": "@battis/prettier-config",
   "eslintConfig": {
     "extends": "@battis/eslint-config"
   },
-  "dependencies": {
-    "@inquirer/prompts": "^2.3.1",
-    "@tahul/is-valid-domain": "^1.0.5",
-    "app-root-path": "^3.1.0",
-    "chalk": "^4.1.2",
-    "cron-validate": "^1.4.5",
-    "dotenv": "^16.4.5",
-    "email-validator": "^2.0.4",
-    "is-valid-path": "^0.1.1",
-    "jackspeak": "^2.3.6",
-    "ora": "^6.3.1",
-    "shelljs": "^0.8.5",
-    "strip-ansi": "^7.1.0",
-    "winston": "^3.15.0"
-  },
   "devDependencies": {
     "@battis/eslint-config": "latest",
     "@battis/prettier-config": "latest",
-    "@battis/typescript-tricks": "^0.2.2",
-    "@changesets/cli": "^2.27.9",
+    "@changesets/cli": "^2.27.10",
     "@tsconfig/node20": "^20.1.4",
-    "@types/is-valid-path": "^0.1.2",
-    "@types/node": "^20.17.4",
-    "@types/shelljs": "^0.8.15",
-    "del-cli": "^6.0.0",
-    "npm-run-all": "^4.1.5",
-    "tsx": "^4.19.2",
-    "typescript": "^5.6.3"
+    "@types/node": "^20.17.8",
+    "lerna": "^8.1.9",
+    "monorepo-package-paths": "^0.3.4",
+    "npm-run-all": "^4.1.5"
   },
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
-  "engines": {
-    "node": ">=12.17"
-  },
   "target": "node"
 }

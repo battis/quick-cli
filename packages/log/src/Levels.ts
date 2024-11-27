@@ -3,14 +3,6 @@ export type CustomLevels = {
   colors: { [name: string]: string };
 };
 
-export type LogOptions = {
-  logFilePath?: string;
-  stdoutLevel: string;
-  fileLevel: string;
-  levels: CustomLevels;
-  root: string;
-};
-
 export const DefaultLevels: CustomLevels = {
   levels: {
     all: 6,
