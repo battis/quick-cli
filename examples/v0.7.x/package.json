@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@battis/qui-cli": "workspace:*",
+    "jackspeak": "^2.3.6"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "tsx": "^4.19.2"
+  }
+}
