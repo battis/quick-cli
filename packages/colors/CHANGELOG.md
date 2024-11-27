@@ -1,5 +1,12 @@
 # @battis/qui-cli.colors
 
+## 0.8.2
+
+### Patch Changes
+
+- Updated dependencies [6badb2b]
+  - @battis/qui-cli.plugin@0.1.2
+
 ## 0.8.1
 
 ### Patch Changes

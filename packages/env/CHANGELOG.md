@@ -1,5 +1,14 @@
 # @battis/qui-cli.env
 
+## 0.8.2
+
+### Patch Changes
+
+- 6badb2b: fix(?) incompatibility with v0.7.x scripts
+- Updated dependencies [6badb2b]
+  - @battis/qui-cli.plugin@0.1.2
+  - @battis/qui-cli.root@0.8.2
+
 ## 0.8.1
 
 ### Patch Changes

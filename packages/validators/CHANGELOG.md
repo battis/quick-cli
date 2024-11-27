@@ -1,5 +1,13 @@
 # @battis/qui-cli.validators
 
+## 0.8.2
+
+### Patch Changes
+
+- Updated dependencies [6badb2b]
+  - @battis/qui-cli.plugin@0.1.2
+  - @battis/qui-cli.root@0.8.2
+
 ## 0.8.1
 
 ### Patch Changes

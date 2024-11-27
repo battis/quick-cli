@@ -1,6 +1,6 @@
 {
   "name": "@battis/qui-cli.log",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Standardized Winston wrapper for CLI apps",
   "homepage": "https://github.com/battis/qui-cli/tree/main/packages/log#readme",
   "repository": {

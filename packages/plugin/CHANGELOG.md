@@ -1,5 +1,11 @@
 # @battis/qui-cli.plugin
 
+## 0.1.2
+
+### Patch Changes
+
+- 6badb2b: fix(?) incompatibility with v0.7.x scripts
+
 ## 0.1.1
 
 ### Patch Changes
