@@ -1,0 +1,23 @@
+{
+  "name": "@examples/pre-v0.8.x",
+  "version": "0.0.0",
+  "homepage": "https://github.com/battis/qui-cli/tree/main/examples/pre-v0.8.x#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/battis/qui-cli.git",
+    "directory": "examples/pre-v0.8.x"
+  },
+  "author": {
+    "name": "Seth Battis",
+    "url": "https://github.com/battis"
+  },
+  "type": "module",
+  "dependencies": {
+    "@battis/qui-cli": "workspace:*",
+    "jackspeak": "^2.3.6"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "tsx": "^4.19.2"
+  }
+}
