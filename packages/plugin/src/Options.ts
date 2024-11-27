@@ -33,5 +33,5 @@ export type Options = {
   /** @deprecated use flag */
   flags?: flag['value'];
 } & {
-  usage?: Paragraph[];
+  man?: Paragraph[];
 };

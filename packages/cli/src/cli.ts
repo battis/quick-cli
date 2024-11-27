@@ -6,7 +6,6 @@ import * as plugin from '@battis/qui-cli.plugin';
 import { Root } from '@battis/qui-cli.root';
 import { Shell, Options as ShellOptions } from '@battis/qui-cli.shell';
 import { Validators } from '@battis/qui-cli.validators';
-import { RecursivePartial } from '@battis/typescript-tricks';
 import * as prompts from '@inquirer/prompts';
 import spinner from 'ora';
 

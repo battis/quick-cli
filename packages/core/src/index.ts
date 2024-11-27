@@ -34,20 +34,19 @@ export class Core {
     }
   }
 
-  private apply(config: plugin.Options) {
-    const {
-      num,
-      numList,
-      opt,
-      options,
-      optList,
-      optionLists,
-      flag,
-      flags,
-      flagList,
-      fields,
-      usage
-    } = config;
+  private apply({
+    num,
+    numList,
+    opt,
+    options,
+    optList,
+    optionLists,
+    flag,
+    flags,
+    flagList,
+    fields,
+    man = []
+  }: plugin.Options) {
     this.jack
       .num({ ...num })
       .numList({ ...numList })
@@ -56,15 +55,43 @@ export class Core {
       .flag({ ...flags, ...flag })
       .flagList({ ...flagList })
       .addFields({ ...fields });
-    if (usage) {
-      for (const entry of usage) {
-        if (entry.level) {
-          this.jack.heading(entry.text, entry.level, { pre: entry.pre });
-        } else {
-          this.jack.description(entry.text, { pre: entry.pre });
-        }
+    for (const paragraph of man) {
+      if (paragraph.level) {
+        this.jack.heading(paragraph.text, paragraph.level, {
+          pre: paragraph.pre
+        });
+      } else {
+        this.jack.description(paragraph.text, { pre: paragraph.pre });
       }
     }
+  }
+
+  private merge(opt: plugin.Options, pluginOptions: plugin.Options) {
+    return {
+      num: { ...opt.num, ...pluginOptions.num },
+      numList: { ...opt.numList, ...pluginOptions.numList },
+      opt: {
+        ...opt.options,
+        ...opt.opt,
+        ...pluginOptions.options,
+        ...pluginOptions.opt
+      },
+      optList: {
+        ...opt.optionLists,
+        ...opt.optList,
+        ...pluginOptions.optionLists,
+        ...pluginOptions.optList
+      },
+      flag: {
+        ...opt.flags,
+        ...opt.flag,
+        ...pluginOptions.flags,
+        ...pluginOptions.flag
+      },
+      flagList: { ...opt.flagList, ...pluginOptions.flagList },
+      fields: { ...opt.fields, ...pluginOptions.fields },
+      man: [...(opt.man || []), ...(pluginOptions.man || [])]
+    };
   }
 
   public init(
@@ -100,34 +127,9 @@ export class Core {
     let opt: plugin.Options = options;
 
     for (const plugin of this.plugins) {
-      const pluginOptions = plugin.options();
-      opt = {
-        num: { ...opt.num, ...pluginOptions.num },
-        numList: { ...opt.numList, ...pluginOptions.numList },
-        opt: {
-          ...opt.options,
-          ...opt.opt,
-          ...pluginOptions.options,
-          ...pluginOptions.opt
-        },
-        optList: {
-          ...opt.optionLists,
-          ...opt.optList,
-          ...pluginOptions.optionLists,
-          ...pluginOptions.optList
-        },
-        flag: {
-          ...opt.flags,
-          ...opt.flag,
-          ...pluginOptions.flags,
-          ...pluginOptions.flag
-        },
-        flagList: { ...opt.flagList, ...pluginOptions.flagList },
-        fields: { ...opt.fields, ...pluginOptions.fields },
-        usage: [...(opt.usage || []), ...(pluginOptions.usage || [])]
-      };
-      this.apply(opt);
+      opt = this.merge(opt, plugin.options());
     }
+    this.apply(opt);
 
     const { positionals = [], values = {} } = this.jack.parse();
 
