@@ -16,8 +16,13 @@ export type Options = {
   silent?: boolean;
 };
 export class Shell extends plugin.Base {
-  private showCommands = true;
-  private silent = false;
+  public static readonly defaults = {
+    showCommands: true,
+    silent: false
+  };
+
+  private showCommands = Shell.defaults.showCommands;
+  private silent = Shell.defaults.silent;
   private result: shell.ShellString | undefined = undefined;
 
   private static singleton?: Shell;
@@ -29,7 +34,10 @@ export class Shell extends plugin.Base {
     return this.singleton;
   }
 
-  private constructor({ showCommands = true, silent = false }: Options = {}) {
+  private constructor({
+    showCommands = Shell.defaults.showCommands,
+    silent = Shell.defaults.silent
+  }: Options = {}) {
     super('shell');
     if (Shell.singleton) {
       throw new Error('Shell is a singleton');
@@ -43,12 +51,12 @@ export class Shell extends plugin.Base {
     return {
       flag: {
         commands: {
-          description: 'Include shell commands in log'
+          description: `Include shell commands in log (default: ${colors.value(Shell.defaults.showCommands)}, ${colors.value('--no-commands')} to disable)`,
+          default: Shell.defaults.showCommands
         },
         silent: {
-          description:
-            'Hide command output (on by default, use --no-silent to disable)',
-          default: true
+          description: `Hide command output (default: ${colors.value(Shell.defaults.silent)})`,
+          default: Shell.defaults.showCommands
         }
       }
     };

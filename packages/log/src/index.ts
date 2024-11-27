@@ -17,6 +17,13 @@ export type Options = {
 };
 
 export class Log extends plugin.Base {
+  public static readonly defaults = {
+    logFilePath: undefined,
+    stdoutLevel: 'info',
+    fileLevel: 'all',
+    levels: DefaultLevels
+  };
+
   private logger = winston.createLogger({
     transports: []
   });
@@ -52,10 +59,10 @@ export class Log extends plugin.Base {
   }
 
   public constructor({
-    logFilePath = undefined,
-    stdoutLevel = 'info',
-    fileLevel = 'all',
-    levels = DefaultLevels,
+    logFilePath = Log.defaults.logFilePath,
+    stdoutLevel = Log.defaults.stdoutLevel,
+    fileLevel = Log.defaults.fileLevel,
+    levels = Log.defaults.levels,
     root = process.cwd()
   }: Options = {}) {
     super('log');
@@ -76,15 +83,15 @@ export class Log extends plugin.Base {
     return {
       opt: {
         logFilePath: {
-          description: 'Path to log file'
+          description: `Path to log file (optional)`
         },
         stdoutLevel: {
-          description:
-            'Log level to console stdout: off, fatal, error, warning, info, debug, trace, or all (default: info)'
+          description: `Log level to console stdout: ${colors.quotedValue('"off"')}, ${colors.quotedValue('"fatal"')}, ${colors.quotedValue('"error"')}, ${colors.quotedValue('"warning"')}, ${colors.quotedValue('"info"')}, ${colors.quotedValue('"debug"')}, ${colors.quotedValue('"trace"')}, or ${colors.quotedValue('"all"')} (default: ${colors.quotedValue(`"${Log.defaults.stdoutLevel}"`)})`,
+          default: Log.defaults.stdoutLevel
         },
         fileLevel: {
-          description:
-            'Log level to log file (if path proved): off, fatal, error, warning, info, debug, trace, or all (default: all)'
+          description: `Log level to log file (if path proved): ${colors.quotedValue('"off"')}, ${colors.quotedValue('"fatal"')}, ${colors.quotedValue('"error"')}, ${colors.quotedValue('"warning"')}, ${colors.quotedValue('"info"')}, ${colors.quotedValue('"debug"')}, ${colors.quotedValue('"trace"')}, or ${colors.quotedValue('"all"')} (default: ${colors.quotedValue(`"${Log.defaults.fileLevel}"`)})`,
+          default: Log.defaults.fileLevel
         }
       }
     };

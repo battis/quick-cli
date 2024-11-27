@@ -31,7 +31,7 @@
     "jackspeak": "^2.3.6"
   },
   "devDependencies": {
-    "@battis/typescript-tricks": "^0.2.2",
+    "@battis/typescript-tricks": "^0.7.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.17.8",
     "del-cli": "^6.0.0",

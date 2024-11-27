@@ -1,4 +1,5 @@
 import * as plugin from '@battis/qui-cli.plugin';
+import { ArrayElement } from '@battis/typescript-tricks';
 import { Jack, JackOptions } from 'jackspeak';
 
 export type Options = JackOptions & {
@@ -6,7 +7,16 @@ export type Options = JackOptions & {
 } & plugin.Options;
 
 export class Core {
-  private plugins = new Map<string, plugin.Base>();
+  public static readonly defaults = {
+    requirePositionals: undefined,
+    allowPositionals: true,
+    envPrefix: 'ARG',
+    env: process.env,
+    usage: undefined,
+    stopAtPositional: false
+  };
+
+  public plugins: plugin.Base[] = [];
 
   private _jack: Jack | undefined = undefined;
   private get jack() {
@@ -19,7 +29,9 @@ export class Core {
   private requirePositionals: boolean | number | undefined = undefined;
 
   public register(plugin: plugin.Base) {
-    this.plugins.set(plugin.name, plugin);
+    if (!this.plugins.includes(plugin)) {
+      this.plugins.push(plugin);
+    }
   }
 
   private apply(config: plugin.Options) {
@@ -36,16 +48,14 @@ export class Core {
       fields,
       usage
     } = config;
-    num && this.jack.num(num);
-    numList && this.jack.numList(numList);
-    opt && this.jack.opt(opt);
-    options && this.jack.opt(options);
-    optList && this.jack.optList(optList);
-    optionLists && this.jack.optList(optionLists);
-    flag && this.jack.flag(flag);
-    flags && this.jack.flag(flags);
-    flagList && this.jack.flagList(flagList);
-    fields && this.jack.addFields(fields);
+    this.jack
+      .num({ ...num })
+      .numList({ ...numList })
+      .opt({ ...options, ...opt })
+      .optList({ ...optionLists, ...optList })
+      .flag({ ...flags, ...flag })
+      .flagList({ ...flagList })
+      .addFields({ ...fields });
     if (usage) {
       for (const entry of usage) {
         if (entry.level) {
@@ -57,14 +67,19 @@ export class Core {
     }
   }
 
-  public init(options: Options = {}) {
+  public init(
+    options: Options = {}
+  ): plugin.Arguments<
+    typeof options &
+      ReturnType<ArrayElement<(typeof this)['plugins']>['options']>
+  > {
     const {
-      requirePositionals: _reqPos,
-      allowPositionals,
-      env,
-      envPrefix,
-      usage,
-      stopAtPositional
+      requirePositionals: _reqPos = Core.defaults.requirePositionals,
+      allowPositionals = Core.defaults.allowPositionals,
+      env = Core.defaults.env,
+      envPrefix = Core.defaults.envPrefix,
+      usage = Core.defaults.usage,
+      stopAtPositional = Core.defaults.stopAtPositional
     } = options;
     this.requirePositionals = _reqPos;
     this._jack = new Jack({
@@ -73,8 +88,8 @@ export class Core {
           ? allowPositionals
           : !!this.requirePositionals,
       envPrefix,
-      env,
       usage,
+      env,
       stopAtPositional
     }).flag({
       help: {
@@ -82,10 +97,36 @@ export class Core {
         description: 'Get usage information'
       }
     });
-    this.apply(options);
+    let opt: plugin.Options = options;
 
-    for (const [_, plugin] of this.plugins) {
-      plugin.options && this.apply(plugin.options());
+    for (const plugin of this.plugins) {
+      const pluginOptions = plugin.options();
+      opt = {
+        num: { ...opt.num, ...pluginOptions.num },
+        numList: { ...opt.numList, ...pluginOptions.numList },
+        opt: {
+          ...opt.options,
+          ...opt.opt,
+          ...pluginOptions.options,
+          ...pluginOptions.opt
+        },
+        optList: {
+          ...opt.optionLists,
+          ...opt.optList,
+          ...pluginOptions.optionLists,
+          ...pluginOptions.optList
+        },
+        flag: {
+          ...opt.flags,
+          ...opt.flag,
+          ...pluginOptions.flags,
+          ...pluginOptions.flag
+        },
+        flagList: { ...opt.flagList, ...pluginOptions.flagList },
+        fields: { ...opt.fields, ...pluginOptions.fields },
+        usage: [...(opt.usage || []), ...(pluginOptions.usage || [])]
+      };
+      this.apply(opt);
     }
 
     const { positionals = [], values = {} } = this.jack.parse();
@@ -101,7 +142,7 @@ export class Core {
       );
     }
     if ('help' in values && values.help) {
-      console.log(usage);
+      console.log(this.usage());
       process.exit(0);
     }
 

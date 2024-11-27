@@ -50,7 +50,15 @@ export const cli = {
   validators: Validators.getInstance(),
 
   // FIXME actual values for options?
-  options: { defaults: {}, hydrate: (obj: any) => obj },
+  options: {
+    defaults: {
+      env: Env.defaults,
+      args: Core.defaults,
+      log: Log.defaults,
+      shell: Shell.defaults
+    },
+    hydrate: (obj: any) => obj
+  },
 
   /** @deprecated use @inquirer/prompts directly */
   prompts,

@@ -29,6 +29,12 @@ type RemoveOptions = {
 };
 
 export class Env extends plugin.Base {
+  public static readonly defaults = {
+    root: appRoot(),
+    loadDotEnv: true,
+    setRootAsCurrentWorkingDirectory: true
+  };
+
   private root: string;
 
   private static singleton?: Env;
@@ -41,9 +47,10 @@ export class Env extends plugin.Base {
   }
 
   public constructor({
-    root = appRoot(),
-    loadDotEnv = true,
-    setRootAsCurrentWorkingDirectory = true
+    root = Env.defaults.root,
+    loadDotEnv = Env.defaults.loadDotEnv,
+    setRootAsCurrentWorkingDirectory = Env.defaults
+      .setRootAsCurrentWorkingDirectory
   }: Options = {}) {
     super('env');
     if (Env.singleton) {

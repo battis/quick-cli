@@ -33,6 +33,22 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
 
+  examples/v0.7.x:
+    dependencies:
+      '@battis/qui-cli':
+        specifier: workspace:*
+        version: link:../../packages/cli
+      jackspeak:
+        specifier: ^2.3.6
+        version: 2.3.6
+    devDependencies:
+      '@tsconfig/node20':
+        specifier: ^20.1.4
+        version: 20.1.4
+      tsx:
+        specifier: ^4.19.2
+        version: 4.19.2
+
   packages/cli:
     dependencies:
       '@battis/qui-cli.colors':
@@ -73,8 +89,8 @@ importers:
         specifier: latest
         version: 1.5.5(typescript@5.7.2)
       '@battis/typescript-tricks':
-        specifier: ^0.2.2
-        version: 0.2.2
+        specifier: ^0.7.0
+        version: 0.7.0
       '@changesets/cli':
         specifier: ^2.27.10
         version: 2.27.10
@@ -138,8 +154,8 @@ importers:
         version: 2.3.6
     devDependencies:
       '@battis/typescript-tricks':
-        specifier: ^0.2.2
-        version: 0.2.2
+        specifier: ^0.7.0
+        version: 0.7.0
       '@tsconfig/node20':
         specifier: ^20.1.4
         version: 20.1.4
@@ -253,8 +269,8 @@ importers:
         version: 3.1.0
     devDependencies:
       '@battis/typescript-tricks':
-        specifier: ^0.2.2
-        version: 0.2.2
+        specifier: ^0.7.0
+        version: 0.7.0
       '@tsconfig/node20':
         specifier: ^20.1.4
         version: 20.1.4
@@ -433,8 +449,8 @@ packages:
     resolution: {integrity: sha512-IiSLPNjSQ7HH8+kQwjEOTWhzJpXpiU4mxc1Jn5Prko/RUyzR5Gcahe/Y2sGy/N9TRXjNHjiQtErOaypw6OAMQw==}
     engines: {node: '>=12.17'}
 
-  '@battis/typescript-tricks@0.2.2':
-    resolution: {integrity: sha512-Q0Brc5Qht0HqB0CuGIaLV8l7iyjsWYgnIjFKpGM3G5jfAiaIrxSFvQFxkwYBZrzlIM5IFbto8Rap3D0HJ3OJQA==}
+  '@battis/typescript-tricks@0.7.0':
+    resolution: {integrity: sha512-MdcMWCLKa0sBgEDnAI//uYAVBxZ0EP/vkGiGcFpkqd6YjlbiIqNPSH5KM1SFAlPRWP6DuUBr53Bm7UTJltqzrg==}
 
   '@changesets/apply-release-plan@7.0.6':
     resolution: {integrity: sha512-TKhVLtiwtQOgMAC0fCJfmv93faiViKSDqr8oMEqrnNs99gtSC1sZh/aEMS9a+dseU1ESZRCK+ofLgGY7o0fw/Q==}
@@ -4228,7 +4244,7 @@ snapshots:
       strip-ansi: 7.1.0
       winston: 3.17.0
 
-  '@battis/typescript-tricks@0.2.2': {}
+  '@battis/typescript-tricks@0.7.0': {}
 
   '@changesets/apply-release-plan@7.0.6':
     dependencies:
