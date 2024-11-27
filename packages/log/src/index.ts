@@ -65,7 +65,10 @@ export class Log extends plugin.Base {
       Log.singleton = this;
     }
     (this.root = root), (this.levels = levels);
-    this.init({ values: { logFilePath, stdoutLevel, fileLevel } });
+    this.init({
+      positionals: [], // FIXME janky literal
+      values: { logFilePath, stdoutLevel, fileLevel }
+    });
     winston.addColors(levels.colors);
   }
 
@@ -115,7 +118,7 @@ export class Log extends plugin.Base {
   }
 
   public get() {
-    return this.logger || this.init({});
+    return this.logger || this.init({ positionals: [], values: {} }); // FIXME janky literal
   }
 
   private colorObject(obj: object) {

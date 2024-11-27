@@ -36,7 +36,7 @@ export class Shell extends plugin.Base {
     } else {
       Shell.singleton = this;
     }
-    this.init({ values: { silent, commands: showCommands } });
+    this.init({ positionals: [], values: { silent, commands: showCommands } }); // FIXME janky literal
   }
 
   public options() {
