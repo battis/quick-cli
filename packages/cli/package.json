@@ -1,6 +1,6 @@
 {
   "name": "@battis/qui-cli",
-  "version": "0.7.3",
+  "version": "0.8.0",
   "description": "Quickly build a CLI app",
   "homepage": "https://github.com/battis/qui-cli/tree/main/packages/cli#readme",
   "repository": {

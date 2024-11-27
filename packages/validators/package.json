@@ -1,6 +1,6 @@
 {
   "name": "@battis/qui-cli.validators",
-  "version": "0.7.3",
+  "version": "0.8.0",
   "description": "A collection of input validators for use CLI apps",
   "homepage": "https://github.com/battis/qui-cli/tree/main/packages/validators#readme",
   "repository": {

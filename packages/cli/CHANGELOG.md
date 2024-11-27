@@ -1,5 +1,23 @@
 # @battis/qui-cli
 
+## 0.8.0
+
+### Minor Changes
+
+- 97d48ef: refactored for plugin architecture
+
+### Patch Changes
+
+- Updated dependencies [97d48ef]
+  - @battis/qui-cli.colors@0.8.0
+  - @battis/qui-cli.core@0.8.0
+  - @battis/qui-cli.env@0.8.0
+  - @battis/qui-cli.log@0.8.0
+  - @battis/qui-cli.plugin@0.1.0
+  - @battis/qui-cli.root@0.8.0
+  - @battis/qui-cli.shell@0.8.0
+  - @battis/qui-cli.validators@0.8.0
+
 ## 0.7.3
 
 ### Patch Changes
