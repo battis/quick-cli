@@ -133,6 +133,11 @@ export class Core {
 
     const { positionals = [], values = {} } = this.jack.parse();
 
+    if ('help' in values && values.help) {
+      console.log(this.usage());
+      process.exit(0);
+    }
+
     if (
       this.requirePositionals &&
       (!positionals.length ||
@@ -142,10 +147,6 @@ export class Core {
       throw new Error(
         `Incorrect positional arguments (${this.requirePositionals} expected, ${positionals.length} provided)`
       );
-    }
-    if ('help' in values && values.help) {
-      console.log(this.usage());
-      process.exit(0);
     }
 
     for (const plugin of this.plugins) {
