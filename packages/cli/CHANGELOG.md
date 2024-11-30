@@ -1,5 +1,12 @@
 # @battis/qui-cli
 
+## 0.8.4
+
+### Patch Changes
+
+- Updated dependencies [ad6edd4]
+  - @battis/qui-cli.core@0.8.4
+
 ## 0.8.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @battis/qui-cli.core
 
+## 0.8.4
+
+### Patch Changes
+
+- ad6edd4: check for help flag _first_
+
 ## 0.8.3
 
 ### Patch Changes
