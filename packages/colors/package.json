@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@battis/qui-cli.plugin": "workspace:*",
-    "chalk": "^4.1.2"
+    "chalk": "^5.3.0"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
