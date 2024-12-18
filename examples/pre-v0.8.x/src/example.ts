@@ -18,3 +18,5 @@ const {
 });
 
 cli.log.info({ flag0, flag1, opt0, opt1, arg0, arg1, rest });
+
+cli.shell.mv('r', 'src', 'dest');

@@ -15,6 +15,7 @@ export type Options = {
   showCommands?: boolean;
   silent?: boolean;
 };
+
 export class Shell extends plugin.Base {
   public static readonly defaults = {
     showCommands: true,
@@ -116,7 +117,79 @@ export class Shell extends plugin.Base {
   public getPreviousResult() {
     return this.result;
   }
+
+  /** @deprecated use shelljs */
+  public cd = shell.cd;
+
+  /** @deprecated use shelljs */
+  public pwd = shell.pwd;
+
+  /** @deprecated use shelljs */
+  public ls = shell.ls;
+
+  /** @deprecated use shelljs */
+  public find = shell.find;
+
+  /** @deprecated use shelljs */
+  public cp = shell.cp;
+
+  /** @deprecated use shelljs */
+  public rm = shell.rm;
+
+  /** @deprecated use shelljs */
+  public mv = shell.mv;
+
+  /** @deprecated use shelljs */
+  public mkdir = shell.mkdir;
+
+  /** @deprecated use shelljs */
+  public test = shell.test;
+
+  /** @deprecated use shelljs */
+  public cat = shell.cat;
+
+  /** @deprecated use shelljs */
+  public sed = shell.sed;
+
+  /** @deprecated use shelljs */
+  public grep = shell.grep;
+
+  /** @deprecated use shelljs */
+  public which = shell.which;
+
+  /** @deprecated use shelljs */
+  public echo = shell.echo;
+
+  /** @deprecated use shelljs */
+  public pushd = shell.pushd;
+
+  /** @deprecated use shelljs */
+  public popd = shell.popd;
+
+  /** @deprecated use shelljs */
+  public dirs = shell.dirs;
+
+  /** @deprecated use shelljs */
+  public ln = shell.ln;
+
+  /** @deprecated use shelljs */
+  public exit = shell.exit;
+
+  /** @deprecated use shelljs */
+  public env = shell.env;
+
+  /** @deprecated use shelljs */
+  public sort = shell.sort;
+
+  /** @deprecated use shelljs */
+  public tail = shell.tail;
+
+  /** @deprecated use shelljs */
+  public uniq = shell.uniq;
+
+  /** @deprecated use shelljs */
+  public set = shell.set;
 }
 
 const s = Shell.getInstance();
-export default s;
+export default s as Shell;
