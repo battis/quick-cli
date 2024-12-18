@@ -1,5 +1,12 @@
 # @battis/qui-cli
 
+## 0.8.5
+
+### Patch Changes
+
+- Updated dependencies [75a0c50]
+  - @battis/qui-cli.shell@0.8.3
+
 ## 0.8.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @battis/qui-cli.shell
 
+## 0.8.3
+
+### Patch Changes
+
+- 75a0c50: fix reverse compatibility with shelljs mapping
+
 ## 0.8.2
 
 ### Patch Changes
