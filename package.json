@@ -15,9 +15,7 @@
     "pre-changeset": "run-s pre-changeset:*",
     "pre-changeset:monorepo-package-paths": "npx monorepo-package-paths -w --author --homepage --repository",
     "pre-changeset:build": "run-s build",
-    "release": "run-s release:*",
-    "release:changeset": "changeset version",
-    "release:publish": "pnpm publish -r  --access public --otp $(op item get npm --otp)"
+    "release": "pnpm publish -r  --access public --otp $(op item get npm --otp)"
   },
   "prettier": "@battis/prettier-config",
   "eslintConfig": {
@@ -26,7 +24,6 @@
   "devDependencies": {
     "@battis/eslint-config": "^2.0.1",
     "@battis/prettier-config": "^1.5.5",
-    "@changesets/cli": "^2.27.10",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^22.10.2",
     "lerna": "^8.1.9",
