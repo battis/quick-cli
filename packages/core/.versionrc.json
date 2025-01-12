@@ -1,0 +1,5 @@
+{
+  "path": ".",
+  "tag-prefix": "core/",
+  "releaseCommitMessageFormat": "chore(qui-cli.core): @battis/qui-cli.core@{{currentTag}}"
+}
