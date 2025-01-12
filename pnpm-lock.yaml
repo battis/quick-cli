@@ -242,6 +242,9 @@ importers:
       '@types/node':
         specifier: ^22.10.2
         version: 22.10.2
+      commit-and-tag-version:
+        specifier: ^12.5.0
+        version: 12.5.0
       del-cli:
         specifier: ^6.0.0
         version: 6.0.0
