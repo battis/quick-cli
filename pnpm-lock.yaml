@@ -408,6 +408,9 @@ importers:
       '@types/shelljs':
         specifier: ^0.8.15
         version: 0.8.15
+      commit-and-tag-version:
+        specifier: ^12.5.0
+        version: 12.5.0
       del-cli:
         specifier: ^6.0.0
         version: 6.0.0
