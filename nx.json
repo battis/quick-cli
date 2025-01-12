@@ -1,0 +1,34 @@
+{
+  "targetDefaults": {
+    "clean": {
+      "dependsOn": []
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "build:clean": {
+      "dependsOn": []
+    },
+    "build:compile": {
+      "dependsOn": []
+    },
+    "release": {
+      "dependsOn": []
+    },
+    "release:build": {
+      "dependsOn": []
+    },
+    "release:tag": {
+      "dependsOn": []
+    },
+    "release:publish": {
+      "dependsOn": []
+    }
+  }
+}
