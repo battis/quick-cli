@@ -3,6 +3,7 @@ import { Core, Options as CoreOptions } from '@battis/qui-cli.core';
 import { Env, Options as EnvOptions } from '@battis/qui-cli.env';
 import { Log, Options as LogOptions } from '@battis/qui-cli.log';
 import * as plugin from '@battis/qui-cli.plugin';
+import progress from '@battis/qui-cli.progress';
 import { Root } from '@battis/qui-cli.root';
 import { Shell, Options as ShellOptions } from '@battis/qui-cli.shell';
 import { Validators } from '@battis/qui-cli.validators';
@@ -75,6 +76,8 @@ export const cli = {
       };
     }
   },
+
+  progress,
 
   /** @deprecated use @inquirer/prompts directly */
   prompts

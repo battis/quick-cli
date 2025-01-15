@@ -93,11 +93,15 @@ Report the root of the current project, per [app-root-path](https://www.npmjs.co
 
 ### `cli.colors: chalk`
 
-Pass-through to the [chalk](https://www.npmjs.com/package/chalk) terminal string styling [API](https://github.com/chalk/chalk#usage).
+Pass-through to the [`chalk`](https://www.npmjs.com/package/chalk) terminal string styling [API](https://github.com/chalk/chalk#usage).
 
 ### `cli.log.get(): winston.Logger`
 
-Pass-through to [winston](https://www.npmjs.com/package/winston) logger [API](https://github.com/winstonjs/winston#usage). A default logger to the console is created by `cli.init()`. The default log levels are: none, fatal, error, warning, info, debug, trace, all, with convenience methods for all of them:
+Pass-through to [`winston`](https://www.npmjs.com/package/winston) logger [API](https://github.com/winstonjs/winston#usage). A default logger to the console is created by `cli.init()`. The default log levels are: none, fatal, error, warning, info, debug, trace, all, with convenience methods for all of them:
+
+### `cli.progress: ProgressBar`
+
+Thin wrapper around [`cli-progress`](https://npmjs.com/package/cli-progress) to more easily generate progress bars.
 
 ### `cli.prompts: prompts
 
@@ -105,7 +109,7 @@ Pass-through to [@inquirer/prompts](https://www.npmjs.com/package/@inquirer/prom
 
 ### `cli.shell: shell`
 
-Pass-through to [shelljs](https://www.npmjs.com/package/shelljs) unix shell [API](https://github.com/shelljs/shelljs#command-reference).
+Pass-through to [`shelljs`](https://www.npmjs.com/package/shelljs) unix shell [API](https://github.com/shelljs/shelljs#command-reference).
 
 ### `cli.validators`
 
