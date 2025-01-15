@@ -7,7 +7,6 @@ import { Root } from '@battis/qui-cli.root';
 import { Shell, Options as ShellOptions } from '@battis/qui-cli.shell';
 import { Validators } from '@battis/qui-cli.validators';
 import * as prompts from '@inquirer/prompts';
-import spinner from 'ora';
 
 export type Options = {
   env?: EnvOptions;
@@ -78,10 +77,7 @@ export const cli = {
   },
 
   /** @deprecated use @inquirer/prompts directly */
-  prompts,
-
-  /** @deprecated use ora directly */
-  spinner
+  prompts
 };
 
 export default cli;

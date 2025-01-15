@@ -107,10 +107,6 @@ Pass-through to [@inquirer/prompts](https://www.npmjs.com/package/@inquirer/prom
 
 Pass-through to [shelljs](https://www.npmjs.com/package/shelljs) unix shell [API](https://github.com/shelljs/shelljs#command-reference).
 
-### `cli.spinner: Ora`
-
-Pass-through to [ora](https://www.npmjs.com/package/ora) terminal spinner/progress bar [API](https://github.com/sindresorhus/ora#usage).
-
 ### `cli.validators`
 
 Collection of validators for use with `cli.prompts` (or other places where validation of text is useful).
