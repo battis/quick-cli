@@ -12,10 +12,10 @@
   "type": "module",
   "scripts": {
     "build": "lerna run build",
-    "pre-changeset": "run-s pre-changeset:*",
-    "pre-changeset:monorepo-package-paths": "npx monorepo-package-paths -w --author --homepage --repository",
-    "pre-changeset:build": "run-s build",
-    "release": "pnpm publish -r  --access public --otp $(op item get npm --otp)"
+    "release": "run-s release:*",
+    "release:monorepo-package-paths": "npx monorepo-package-paths -w --author --homepage --repository",
+    "release:build": "run-s build",
+    "release:publish": "pnpm publish -r  --access public --otp $(op item get npm --otp)"
   },
   "prettier": "@battis/prettier-config",
   "eslintConfig": {
