@@ -1,4 +1,18 @@
-# @battis/qui-cli
+# Changelog
+
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [0.9.0](https://github.com/battis/qui-cli/compare/qui-cli/0.8.5...qui-cli/0.9.0) (2025-01-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **qui-cli:** remove spinner()
+
+### Features
+
+* **qui-cli:** add progress() ([a7bf810](https://github.com/battis/qui-cli/commit/a7bf8108e284a64df236940305426a6b14ae059b))
+* **qui-cli:** remove spinner() ([7905bad](https://github.com/battis/qui-cli/commit/7905bad6e79328772191b7182083b06f8ebea6cd))
 
 ## 0.8.5
 
