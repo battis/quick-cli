@@ -1,6 +1,6 @@
 {
   "name": "@battis/qui-cli.progress",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/battis/qui-cli/tree/main/packages/progress#readme",
   "repository": {
     "type": "git",
