@@ -1,6 +1,16 @@
 {
   "name": "@battis/qui-cli.progress",
   "version": "0.1.0",
+  "homepage": "https://github.com/battis/qui-cli/tree/main/packages/progress#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/battis/qui-cli.git",
+    "directory": "packages/progress"
+  },
+  "author": {
+    "name": "Seth Battis",
+    "url": "https://github.com/battis"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
